@@ -4,13 +4,13 @@
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-  error: function (e) {
+  error(e) {
     return new EmbedBuilder()
       .setTitle("Error")
       .setDescription(`An error has occurred. \n\n \`${e}\``)
       .setColor("Red");
   },
-  warning: function (e) {
+  warning(e) {
     return new EmbedBuilder()
       .setTitle("Warning")
       .setDescription(`${e}`)

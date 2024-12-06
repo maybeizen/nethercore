@@ -5,7 +5,7 @@ const handleError = require("./handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const OpenAI = require("openai");
 const openai = new OpenAI({
@@ -15,7 +15,7 @@ const systemPrompt = fs.readFileSync("source/config/ai/prompt.txt", "utf-8");
 const infoDB = fs.readFileSync("source/config/ai/info.db.txt", "utf-8");
 const translatePrompt = fs.readFileSync(
   "source/config/ai/translate.txt",
-  "utf-8"
+  "utf-8",
 );
 
 async function generateAiResponse(prompt, language, context = "") {

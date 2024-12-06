@@ -11,12 +11,12 @@ async function deleteTicket(interaction, channel) {
     const users = await User.find();
 
     const user = users.find((user) =>
-      user.tickets.some((ticket) => ticket.id === channel.id)
+      user.tickets.some((ticket) => ticket.id === channel.id),
     );
 
     if (!user) {
       return await interaction.reply(
-        "400 Bad Request. Please try again later."
+        "400 Bad Request. Please try again later.",
       );
     }
 

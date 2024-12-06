@@ -11,7 +11,7 @@ const fs = require("fs");
 const { loadMessages, languageChoices } = require("../../utils/language.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {

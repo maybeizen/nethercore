@@ -19,7 +19,7 @@ const embed = require("../../config/embed.config.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const registerUser = require("../register-user.js");
 const {
@@ -33,7 +33,7 @@ async function openTicket(interaction, client, user) {
     await interaction.deferReply({ ephemeral: true });
     console.log(
       color.green("[INFO] ") +
-        color.white(`Opening ticket for ${interaction.user.username}...`)
+        color.white(`Opening ticket for ${interaction.user.username}...`),
     );
 
     //get user data
@@ -74,13 +74,13 @@ async function openTicket(interaction, client, user) {
     const menuOptions = types.map((type) =>
       new StringSelectMenuOptionBuilder()
         .setLabel(type.label)
-        .setValue(type.value)
+        .setValue(type.value),
     );
 
     const prioritiesOptions = priorities.map((priority) =>
       new StringSelectMenuOptionBuilder()
         .setLabel(priority.label)
-        .setValue(priority.value)
+        .setValue(priority.value),
     );
 
     const categoryMenu = new StringSelectMenuBuilder()
@@ -116,7 +116,7 @@ async function openTicket(interaction, client, user) {
                 name: messages.ticketBannedFields.field1.name,
                 value: messages.ticketBannedFields.field1.value.replace(
                   "{reason}",
-                  userData.ticketBanned.reason
+                  userData.ticketBanned.reason,
                 ),
                 inline: true,
               },
@@ -124,10 +124,10 @@ async function openTicket(interaction, client, user) {
                 name: messages.ticketBannedFields.field2.name,
                 value: messages.ticketBannedFields.field2.value.replace(
                   "{moderator}",
-                  `<@${userData.ticketBanned.moderator}>`
+                  `<@${userData.ticketBanned.moderator}>`,
                 ),
                 inline: true,
-              }
+              },
             )
             .setColor(config.general.botColor)
             .setFooter({
@@ -140,21 +140,21 @@ async function openTicket(interaction, client, user) {
 
     // check if theres an open ticket
     const openTicket = userData.tickets.find(
-      (ticket) => ticket.status === "open"
+      (ticket) => ticket.status === "open",
     );
 
     if (openTicket) {
       console.log(
         color.yellow("[WARN] ") +
           color.white(
-            `Failed to open ticket. ${interaction.user.username} already has a ticket open!`
-          )
+            `Failed to open ticket. ${interaction.user.username} already has a ticket open!`,
+          ),
       );
 
       return await interaction.editReply({
         content: messages.ticketAlreadyOpenError.replace(
           "{ticket}",
-          `<#${openTicket.id}>`
+          `<#${openTicket.id}>`,
         ),
       });
     }
@@ -251,7 +251,7 @@ async function openTicket(interaction, client, user) {
           id: ticketChannel.id,
           name: `${shortLanguageCode}-ticket-${interaction.user.username}`,
           status: "open",
-          language: language,
+          language,
           priority:
             selectedPriority.charAt(0).toUpperCase() +
             selectedPriority.slice(1),
@@ -283,7 +283,7 @@ async function openTicket(interaction, client, user) {
                   .replace("{language}", languageChoices[language])
                   .replace("{ticketId}", ticketObj.id)
                   .replace("{priority}", ticketObj.priority)
-                  .replace("{department}", ticketObj.department)
+                  .replace("{department}", ticketObj.department),
               )
               .setColor("Red")
               .setFooter({
@@ -297,7 +297,7 @@ async function openTicket(interaction, client, user) {
                 .setLabel(" ")
                 .setEmoji("1289398644914524253")
                 .setStyle(ButtonStyle.Danger)
-                .setCustomId("close-ticket")
+                .setCustomId("close-ticket"),
             ),
           ],
         });
@@ -305,8 +305,8 @@ async function openTicket(interaction, client, user) {
         console.log(
           color.green("[INFO] ") +
             color.white(
-              `Successfully created ticket for ${interaction.user.username}...`
-            )
+              `Successfully created ticket for ${interaction.user.username}...`,
+            ),
         );
 
         // notify user their ticket was made
@@ -315,7 +315,7 @@ async function openTicket(interaction, client, user) {
             new EmbedBuilder()
               .setTitle("Support")
               .setDescription(
-                messages.ticketCreatedPrompt.replace("{ticket}", ticketChannel)
+                messages.ticketCreatedPrompt.replace("{ticket}", ticketChannel),
               )
               .setColor("Red")
               .setFooter({

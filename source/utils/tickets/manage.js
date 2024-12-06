@@ -7,7 +7,7 @@ const handleError = require("../../utils/handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const { loadMessages } = require("../language.js");
 
@@ -16,7 +16,7 @@ async function changePriority(interaction, client, channel, priority) {
     const users = await User.find();
 
     const userData = users.find((user) =>
-      user.tickets.some((ticket) => ticket.id === channel.id)
+      user.tickets.some((ticket) => ticket.id === channel.id),
     );
 
     if (!userData) {
@@ -27,7 +27,7 @@ async function changePriority(interaction, client, channel, priority) {
     }
 
     const ticketData = userData.tickets.find(
-      (ticket) => ticket.id === channel.id
+      (ticket) => ticket.id === channel.id,
     );
     const language = userData.language.value;
     const messages = loadMessages(language);
@@ -43,7 +43,7 @@ async function changePriority(interaction, client, channel, priority) {
       return await interaction.reply({
         content: messages.ticketPrioritySameError.replace(
           "{priority}",
-          ticketData.priority
+          ticketData.priority,
         ),
         ephemeral: true,
       });

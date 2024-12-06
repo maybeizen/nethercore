@@ -14,7 +14,7 @@ const embed = require("../../config/embed.config.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const { loadMessages } = require("../language.js");
 
@@ -23,12 +23,12 @@ async function closeTicket(interaction, client, channel) {
     const users = await User.find();
 
     const user = users.find((user) =>
-      user.tickets.some((ticket) => ticket.id === channel.id)
+      user.tickets.some((ticket) => ticket.id === channel.id),
     );
 
     if (!user) {
       return await interaction.reply(
-        "400 Bad Request. Please try again later."
+        "400 Bad Request. Please try again later.",
       );
     }
 
@@ -39,7 +39,7 @@ async function closeTicket(interaction, client, channel) {
 
     if (!ticketData) {
       return await interaction.reply(
-        "400 Bad Request. Please try again later."
+        "400 Bad Request. Please try again later.",
       );
     }
 
@@ -78,7 +78,7 @@ async function closeTicket(interaction, client, channel) {
         .setLabel(" ")
         .setCustomId("unlock-ticket")
         .setStyle(ButtonStyle.Secondary)
-        .setEmoji("1289589547541205032")
+        .setEmoji("1289589547541205032"),
     );
 
     await interaction.reply({
@@ -107,10 +107,10 @@ async function closeTicket(interaction, client, channel) {
               name: messages.ticketClosedFields.field4.name,
               value: messages.ticketClosedFields.field4.value.replace(
                 "{ticket_closedBy}",
-                `<@${ticketData.closed.closedBy}>`
+                `<@${ticketData.closed.closedBy}>`,
               ),
               inline: true,
-            }
+            },
           )
           .setFooter({
             text: "Nether Host | nether.host",

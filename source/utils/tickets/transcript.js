@@ -12,7 +12,7 @@ const fs = require("fs");
 const handleError = require("../handle-error.js");
 const JSON5 = require("json5");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const { loadMessages } = require("../language.js");
 
@@ -21,7 +21,7 @@ async function saveTranscript(content, channel, languageCode) {
   await fs.promises.mkdir(transcriptDir, { recursive: true });
   const filePath = path.join(
     transcriptDir,
-    `${channel.name}-${channel.id}.txt`
+    `${channel.name}-${channel.id}.txt`,
   );
 
   await fs.promises.writeFile(filePath, content);
@@ -29,7 +29,7 @@ async function saveTranscript(content, channel, languageCode) {
 }
 
 async function fetchMessages(channel) {
-  let messages = [];
+  const messages = [];
   let lastMessageId;
 
   while (true) {
@@ -76,7 +76,7 @@ function formatMessages(messages) {
     const attachments = msg.attachments.map((att) => att.url).join("\n");
 
     transcript += `[${time}] ${msg.author.username}: ${msg.content}\n${
-      attachments ? attachments + "\n" : ""
+      attachments ? `${attachments}\n` : ""
     }`;
 
     return transcript;
@@ -90,7 +90,7 @@ async function sendTranscript(user, transcript, client, languageCode) {
         .setLabel(" ")
         .setURL("https://trustpilot.com/evaluate/nether.host")
         .setStyle(ButtonStyle.Link)
-        .setEmoji("1289603836360523907")
+        .setEmoji("1289603836360523907"),
     );
 
     const messages = loadMessages(languageCode);

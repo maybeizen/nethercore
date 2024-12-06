@@ -16,7 +16,7 @@ const handleError = require("../../utils/handle-error.js");
 const { loadMessages, languageChoices } = require("../../utils/language.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {
@@ -47,7 +47,7 @@ module.exports = {
         new ButtonBuilder()
           .setStyle(ButtonStyle.Link)
           .setURL("https://panel.nether.host")
-          .setLabel(messages.panelButtonText)
+          .setLabel(messages.panelButtonText),
       );
 
       await interaction.reply({

@@ -12,7 +12,7 @@ const fs = require("fs");
 const JSON5 = require("json5");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {
@@ -32,14 +32,14 @@ module.exports = {
         .map((command) => {
           let commandString = `- ${chatInputApplicationCommandMention(
             command.name,
-            command.id
+            command.id,
           )} - ${command.description}`;
 
           if (command.subcommands.length > 0) {
             const subcommandsList = command.subcommands
               .map(
                 (subcommand) =>
-                  `  - /${command.name} ${subcommand.name} - ${subcommand.description}`
+                  `  - /${command.name} ${subcommand.name} - ${subcommand.description}`,
               )
               .join("\n");
 

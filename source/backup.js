@@ -35,7 +35,7 @@ function createBackup() {
 
   console.log(
     color.green("[INFO] ") +
-      color.white(`Creating backup: ${path.basename(file)}`)
+      color.white(`Creating backup: ${path.basename(file)}`),
   );
 
   archive.on("error", (err) => {
@@ -49,7 +49,7 @@ function createBackup() {
     if (fs.existsSync(filePath)) {
       archive.file(filePath, { name: path.basename(file) });
     } else {
-      console.log(color.red(`[ERROR] `) + color.white(`${filePath} not found`));
+      console.log(color.red("[ERROR] ") + color.white(`${filePath} not found`));
     }
   });
 
@@ -59,7 +59,7 @@ function createBackup() {
       archive.directory(folderPath, path.basename(folder));
     } else {
       console.log(
-        color.red(`[ERROR] `) + color.white(`${folderPath} not found`)
+        color.red("[ERROR] ") + color.white(`${folderPath} not found`),
       );
     }
   });
