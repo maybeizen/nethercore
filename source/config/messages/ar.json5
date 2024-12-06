@@ -1,3 +1,6 @@
+// Copyright 2024 Nether Host. All rights reserved.
+// Unauthorized use, modification, or distribution of this code is prohibited.
+
 {
   userNotRegistered: "أنت غير مسجل. يرجى إعادة الانضمام لإصلاح هذه المشكلة.",
   noPermissionError: "ليس لديك الإذن لاستخدام هذا الأمر.",

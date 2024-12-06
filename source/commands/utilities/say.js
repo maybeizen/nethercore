@@ -1,3 +1,6 @@
+// Copyright 2024 Nether Host. All rights reserved.
+// Unauthorized use, modification, or distribution of this code is prohibited.
+
 const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const color = require("chalk");
 const embed = require("../../config/embed.config.js");
