@@ -1,8 +1,0 @@
-
-=== 11/20/2024 ===
-[03:51 PM] _125__: Nice
-[03:51 PM] maybeizen: You didn't have to put your real email XD
-[03:51 PM] _125__: Oh-
-[03:51 PM] maybeizen: its fine, im going to wipe the DB before production
-[03:52 PM] _125__: I mean in the server I'm gonna have to so likd
-[03:52 PM] maybeizen: yeah yeah i know what you mean
