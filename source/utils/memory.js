@@ -31,7 +31,7 @@ function addMessageToMemory(user, sentBy, content) {
 
   memoryData[user.id][messageIndex] = {
     sent_by: sentBy,
-    content: content,
+    content,
   };
 
   saveMemory(memoryData);

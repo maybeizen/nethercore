@@ -11,7 +11,7 @@ const fs = require("fs");
 
 const embed = require("../../config/embed.config.js");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 const domainRegex =
@@ -32,22 +32,22 @@ module.exports = {
             .setName("ip")
             .setDescription("The IP address or domain of the server.")
             .setRequired(true)
-            .setMaxLength(128)
-        )
+            .setMaxLength(128),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("bedrock")
         .setDescription(
-          "Check the status of a Minecraft: Bedrock Edition server."
+          "Check the status of a Minecraft: Bedrock Edition server.",
         )
         .addStringOption((option) =>
           option
             .setName("ip")
             .setDescription("The IP address or domain of the server.")
             .setRequired(true)
-            .setMaxLength(128)
-        )
+            .setMaxLength(128),
+        ),
     ),
 
   async execute(interaction, client) {
@@ -77,7 +77,7 @@ module.exports = {
         .setTitle(`Server Status | ${ip}`)
         .setColor(config.general.botColor)
         .setFooter({
-          text: `Nether Host | nether.host`,
+          text: "Nether Host | nether.host",
           iconURL: client.user.displayAvatarURL({ dynamic: true }),
         });
 
@@ -89,7 +89,7 @@ module.exports = {
             name: "Version",
             value: data?.protocol?.name ? `${data.protocol.name}` : "Unknown",
             inline: true,
-          }
+          },
         );
       }
 
@@ -122,7 +122,7 @@ module.exports = {
           name: "MOTD",
           value: `\`\`\`${data.motd.clean || "No MOTD available."}\`\`\``,
           inline: false,
-        }
+        },
       );
 
       await interaction.editReply({ embeds: [statusEmbed] });

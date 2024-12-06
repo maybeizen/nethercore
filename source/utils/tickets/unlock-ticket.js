@@ -13,7 +13,7 @@ const embed = require("../../config/embed.config.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const { loadMessages } = require("../language.js");
 const { isStaff } = require("../staff.js");
@@ -23,12 +23,12 @@ async function unlockTicket(interaction, client, channel) {
     const users = await User.find();
 
     const user = users.find((user) =>
-      user.tickets.some((ticket) => ticket.id === channel.id)
+      user.tickets.some((ticket) => ticket.id === channel.id),
     );
 
     if (!user) {
       return await interaction.reply(
-        "400 Bad Request. Please try again later."
+        "400 Bad Request. Please try again later.",
       );
     }
 
@@ -72,7 +72,7 @@ async function unlockTicket(interaction, client, channel) {
         .setStyle(ButtonStyle.Danger)
         .setCustomId("close-ticket")
         .setLabel(" ")
-        .setEmoji("1289398644914524253")
+        .setEmoji("1289398644914524253"),
     );
 
     await interaction.update({
@@ -82,8 +82,8 @@ async function unlockTicket(interaction, client, channel) {
           .setDescription(
             messages.ticketUnlockedDescription.replace(
               "{user}",
-              interaction.user
-            )
+              interaction.user,
+            ),
           )
           .setColor(config.general.botColor)
           .setFooter({

@@ -8,7 +8,7 @@ const Giveaways = require("../../models/Giveaways.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 const intervalDuration = 5 * 1000;
@@ -25,7 +25,7 @@ module.exports = async (client) => {
         logCount = 0;
         console.log(
           color.green("[INFO] ") +
-            color.white("Checking for ended giveaways...")
+            color.white("Checking for ended giveaways..."),
         );
       }
 
@@ -39,7 +39,7 @@ module.exports = async (client) => {
     }, intervalDuration);
 
     console.log(
-      color.green("[INFO] ") + color.white("Giveaway checker started.")
+      color.green("[INFO] ") + color.white("Giveaway checker started."),
     );
   } catch (error) {
     handleError(error);

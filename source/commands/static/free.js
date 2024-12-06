@@ -42,7 +42,7 @@ module.exports = {
         new ButtonBuilder()
           .setStyle(ButtonStyle.Link)
           .setURL("https://servox.org")
-          .setLabel(messages.servoxButtonText)
+          .setLabel(messages.servoxButtonText),
       );
 
       await interaction.reply({

@@ -21,7 +21,7 @@ const JSON5 = require("json5");
 const fs = require("fs");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {
@@ -36,13 +36,13 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want statistics for.")
-            .setRequired(false)
-        )
+            .setRequired(false),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("leaderboard")
-        .setDescription("Get the support statistics leaderboard.")
+        .setDescription("Get the support statistics leaderboard."),
     ),
 
   async execute(interaction, client) {
@@ -81,10 +81,10 @@ module.exports = {
 
         const embedMsg = new EmbedBuilder()
           .setTitle(
-            messages.supportStatsTitle.replace("{username}", user.username)
+            messages.supportStatsTitle.replace("{username}", user.username),
           )
           .setDescription(
-            messages.supportStatsDescription.replace("{user}", user)
+            messages.supportStatsDescription.replace("{user}", user),
           )
           .setColor(config.general.botColor)
           .addFields(
@@ -92,7 +92,7 @@ module.exports = {
               name: messages.supportStatsFields.field1.name,
               value: messages.supportStatsFields.field1.value.replace(
                 "{messages}",
-                staffData.staff.ticketMessages
+                staffData.staff.ticketMessages,
               ),
               inline: true,
             },
@@ -100,10 +100,10 @@ module.exports = {
               name: messages.supportStatsFields.field2.name,
               value: messages.supportStatsFields.field2.value.replace(
                 "{closed}",
-                staffData.staff.ticketsClosed
+                staffData.staff.ticketsClosed,
               ),
               inline: true,
-            }
+            },
           )
           .setFooter({
             text: "Nether Host | nether.host",

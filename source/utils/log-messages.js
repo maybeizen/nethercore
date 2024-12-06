@@ -9,11 +9,11 @@ const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
-async function saveChannelMessage(message, channel) {
+function saveChannelMessage(message, channel) {
   try {
     if (message.channel.id !== channel.id) return;
 
-    const logFilePath = path.join(process.cwd(), `messages`, `ai-support.log`);
+    const logFilePath = path.join(process.cwd(), "messages", "ai-support.log");
 
     const messageDir = path.dirname(logFilePath);
     if (!fs.existsSync(messageDir)) {

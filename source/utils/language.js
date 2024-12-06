@@ -8,7 +8,7 @@ const handleError = require("./handle-error.js");
 const loadMessages = (language) => {
   try {
     return JSON5.parse(
-      fs.readFileSync(`source/config/messages/${language}.json5`, "utf-8")
+      fs.readFileSync(`source/config/messages/${language}.json5`, "utf-8"),
     );
   } catch (error) {
     handleError(error);

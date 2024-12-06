@@ -6,7 +6,7 @@ const handleError = require("../../utils/handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 const { loadMessages, languageChoices } = require("../../utils/language.js");
 const embed = require("../../config/embed.config.js");
@@ -24,8 +24,8 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want to add to your ticket.")
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -35,8 +35,8 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want to remove from your ticket.")
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     ),
   async execute(interaction, client) {
     await interaction.deferReply();
@@ -54,7 +54,7 @@ module.exports = {
 
       if (command === "add") {
         const targetUser = interaction.options.getUser("user");
-        const channel = interaction.channel;
+        const { channel } = interaction;
 
         if (targetUser.id === interaction.user.id) {
           return interaction.editReply(messages.ticketCannotAddYourselfError);
@@ -80,13 +80,13 @@ module.exports = {
               .setTitle(
                 messages.ticketAddedUserTitle.replace(
                   "{username}",
-                  targetUser.username
-                )
+                  targetUser.username,
+                ),
               )
               .setDescription(
                 messages.ticketAddedUserDescription
                   .replace("{author}", interaction.user)
-                  .replace("{user}", targetUser)
+                  .replace("{user}", targetUser),
               )
               .setColor(config.general.botColor)
               .setFooter({
@@ -97,11 +97,11 @@ module.exports = {
         });
       } else if (command === "remove") {
         const targetUser = interaction.options.getUser("user");
-        const channel = interaction.channel;
+        const { channel } = interaction;
 
         if (targetUser.id === interaction.user.id) {
           return interaction.editReply(
-            messages.ticketCannotRemoveYourselfError
+            messages.ticketCannotRemoveYourselfError,
           );
         }
 
@@ -125,13 +125,13 @@ module.exports = {
               .setTitle(
                 messages.ticketRemovedUserTitle.replace(
                   "{username}",
-                  targetUser.username
-                )
+                  targetUser.username,
+                ),
               )
               .setDescription(
                 messages.ticketRemovedUserDescription
                   .replace("{author}", interaction.user)
-                  .replace("{user}", targetUser)
+                  .replace("{user}", targetUser),
               )
               .setColor(config.general.botColor)
               .setFooter({

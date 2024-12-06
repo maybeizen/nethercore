@@ -8,7 +8,7 @@ const User = require("../models/User.js");
 const handleError = require("./handle-error.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 let staff = {};
@@ -78,9 +78,9 @@ async function createStaffStatisticsLeaderboard() {
 
     console.log(staffStatistics);
 
-    const sortedStatistics = staffStatistics.sort((a, b) => {
-      return (b.staff.ticketMessages || 0) - (a.staff.ticketMessages || 0);
-    });
+    const sortedStatistics = staffStatistics.sort(
+      (a, b) => (b.staff.ticketMessages || 0) - (a.staff.ticketMessages || 0),
+    );
 
     const topFiveStatistics = sortedStatistics.slice(0, 5);
 
@@ -116,7 +116,7 @@ function buildLeaderboard(staffStatistics, messages, client) {
 
 async function addUserToStaff(user) {
   try {
-    let userData = await User.findOne({ "user.id": user.id });
+    const userData = await User.findOne({ "user.id": user.id });
 
     if (!userData) {
       return "User not found.";
@@ -134,7 +134,7 @@ async function addUserToStaff(user) {
     staff.ids = staffList;
     fs.writeFileSync(
       "source/config/staff.json5",
-      JSON.stringify(staff, null, 2)
+      JSON.stringify(staff, null, 2),
     );
 
     return "Successfully added user to staff.";
@@ -146,7 +146,7 @@ async function addUserToStaff(user) {
 
 async function removeUserFromStaff(user) {
   try {
-    let userData = await User.findOne({ "user.id": user.id });
+    const userData = await User.findOne({ "user.id": user.id });
 
     if (!userData) {
       return "User not found.";
@@ -164,7 +164,7 @@ async function removeUserFromStaff(user) {
     staff.ids = staffList;
     fs.writeFileSync(
       "source/config/staff.json5",
-      JSON.stringify(staff, null, 2)
+      JSON.stringify(staff, null, 2),
     );
 
     return "Successfully removed user from staff.";

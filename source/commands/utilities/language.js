@@ -12,7 +12,7 @@ const { loadMessages, languageChoices } = require("../../utils/language.js");
 const registerUser = require("../../utils/register-user.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {
@@ -33,8 +33,8 @@ module.exports = {
           { name: "Bahasa Indonesia", value: "id-ID" },
           { name: "Nederlands", value: "nl-NL" },
           { name: "Português", value: "pt-PT" },
-          { name: "中文", value: "zh-CN" }
-        )
+          { name: "中文", value: "zh-CN" },
+        ),
     ),
 
   async execute(interaction, client) {
@@ -58,13 +58,13 @@ module.exports = {
             .setTitle(
               messages.languageUpdatedTitle.replace(
                 "{language}",
-                languageChoices[language]
-              )
+                languageChoices[language],
+              ),
             )
             .setDescription(
               messages.languageUpdatedDescription
                 .replace("{user}", interaction.user)
-                .replace("{language}", languageChoices[language])
+                .replace("{language}", languageChoices[language]),
             )
             .setColor(config.general.botColor)
             .setFooter({

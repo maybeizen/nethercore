@@ -10,7 +10,7 @@ const { translate } = require("../../utils/ai.js");
 
 const embed = require("../../config/embed.config.js");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 module.exports = {
@@ -22,14 +22,14 @@ module.exports = {
         .setName("text")
         .setDescription("The text to translate.")
         .setRequired(true)
-        .setMaxLength(2000)
+        .setMaxLength(2000),
     )
     .addStringOption((option) =>
       option
         .setName("language")
         .setDescription("The language to translate to.")
         .setRequired(true)
-        .setMaxLength(32)
+        .setMaxLength(32),
     ),
 
   async execute(interaction, client) {
@@ -52,7 +52,7 @@ module.exports = {
         embeds: [
           new EmbedBuilder()
             .setTitle(`Translation into ${language}`)
-            .setDescription(`Here is the translation: `)
+            .setDescription("Here is the translation: ")
             .setColor(config.general.botColor)
             .setFooter({
               text: "Nether Host | nether.host",
@@ -66,7 +66,7 @@ module.exports = {
               {
                 name: "Translation",
                 value: translation,
-              }
+              },
             ),
         ],
       });

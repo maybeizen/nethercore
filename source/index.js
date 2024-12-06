@@ -22,7 +22,7 @@ const commandsDir = path.join(__dirname, "/commands");
 const eventFolders = fs.readdirSync(eventsDir);
 const handleError = require("./utils/handle-error.js");
 const start = Date.now();
-const token = process.env.token;
+const { token } = process.env;
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -38,7 +38,7 @@ const client = new Client({
 
 (async () => {
   console.log(
-    color.green("[INFO] ") + color.white("Connecting to Database...")
+    color.green("[INFO] ") + color.white("Connecting to Database..."),
   );
 
   try {
@@ -47,13 +47,14 @@ const client = new Client({
     const time = Date.now() - start;
 
     console.log(
-      color.green("[INFO] ") + color.white(`Connected to Database in ${time}ms`)
+      color.green("[INFO] ") +
+        color.white(`Connected to Database in ${time}ms`),
     );
   } catch (error) {
     console.log(color.red("[ERROR] ") + color.white(error));
     console.log(
       color.red("[INFO] ") +
-        color.gray("Terminating node process to ensure data integrity...")
+        color.gray("Terminating node process to ensure data integrity..."),
     );
     process.exit(1);
   }
@@ -75,14 +76,14 @@ const readCommands = (dir) => {
         client.commands.set(command.data.name, command);
         console.log(
           color.green("[INFO] ") +
-            color.white(`Registered command "${command.data.name}"`)
+            color.white(`Registered command "${command.data.name}"`),
         );
       } else {
         console.log(
           color.yellow("[WARN] ") +
             color.white(
-              `Command "${file}" is missing a required "data" or "execute" property.`
-            )
+              `Command "${file}" is missing a required "data" or "execute" property.`,
+            ),
         );
       }
     }
@@ -93,11 +94,11 @@ client.commands = new Collection();
 readCommands(commandsDir);
 
 const commands = Array.from(client.commands.values()).map(
-  (command) => command.data
+  (command) => command.data,
 );
 
 console.log(
-  color.green("[INFO] ") + color.white(`Loaded ${commands.length} commands.`)
+  color.green("[INFO] ") + color.white(`Loaded ${commands.length} commands.`),
 );
 
 // event handler function
@@ -140,7 +141,9 @@ client.on("interactionCreate", async (interaction) => {
   if (!command) {
     console.error(
       color.red("[ERROR] ") +
-        color.white(`No command matching ${interaction.commandName} was found.`)
+        color.white(
+          `No command matching ${interaction.commandName} was found.`,
+        ),
     );
     return;
   }
@@ -177,14 +180,14 @@ client.once("ready", () => {
       if (commands.length === 0) {
         console.log(
           color.yellow("[WARN] ") +
-            color.white("No commands found. Skipping registration.")
+            color.white("No commands found. Skipping registration."),
         );
       } else {
         console.log(
           color.green("[INFO] ") +
             color.white(
-              `Successfully registered ${commands.length} command(s).`
-            )
+              `Successfully registered ${commands.length} command(s).`,
+            ),
         );
       }
     })
@@ -194,12 +197,15 @@ client.once("ready", () => {
 
   createBackup();
 
-  setInterval(() => {
-    console.log(
-      color.green("[INFO] ") + color.white("Running backup process...")
-    );
-    createBackup();
-  }, 6 * 60 * 60 * 1000);
+  setInterval(
+    () => {
+      console.log(
+        color.green("[INFO] ") + color.white("Running backup process..."),
+      );
+      createBackup();
+    },
+    6 * 60 * 60 * 1000,
+  );
 });
 
 client.on("error", (error) => {
@@ -232,7 +238,7 @@ function sendErrorWebhook(error) {
       new EmbedBuilder()
         .setTitle("🚨 Error!")
         .setDescription(
-          `An error occurred in the bot console!\n\n\`\`\`\n${error}\n\`\`\``
+          `An error occurred in the bot console!\n\n\`\`\`\n${error}\n\`\`\``,
         )
         .setColor(config.general.botColor),
     ],

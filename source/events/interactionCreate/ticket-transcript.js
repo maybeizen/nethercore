@@ -34,7 +34,7 @@ module.exports = async (client, interaction) => {
     const transcript = await saveTranscript(
       transcriptContent,
       interaction.channel,
-      shortLanguageCodes[user.language.value]
+      shortLanguageCodes[user.language.value],
     );
     await interaction.editReply({
       content: messages.ticketTranscriptSending,

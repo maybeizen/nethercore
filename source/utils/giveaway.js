@@ -15,7 +15,7 @@ const JSON5 = require("json5");
 const fs = require("fs");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8")
+  fs.readFileSync("source/config/general.json5", "utf-8"),
 );
 
 async function startGiveaway(
@@ -25,15 +25,15 @@ async function startGiveaway(
   requiredRole,
   pingRole,
   messageId,
-  channelId
+  channelId,
 ) {
   try {
     const giveaway = {
       id: null,
-      prize: prize,
-      duration: duration,
-      messageId: messageId,
-      channelId: channelId,
+      prize,
+      duration,
+      messageId,
+      channelId,
       winnerCount: winners,
       requiredRole: requiredRole ? requiredRole.id : null,
       pingRole: pingRole ? pingRole.id : null,
@@ -70,12 +70,12 @@ async function startGiveaway(
 
 async function endGiveaway(id) {
   try {
-    let giveawayData = await Giveaways.findOne({ guildId: config.guildId });
+    const giveawayData = await Giveaways.findOne({ guildId: config.guildId });
 
     if (!giveawayData) {
       return console.error(
         color.red("[ERROR] ") +
-          color.white("No giveaways found for this guild.")
+          color.white("No giveaways found for this guild."),
       );
     }
 
@@ -83,20 +83,20 @@ async function endGiveaway(id) {
 
     if (!giveaway) {
       return console.log(
-        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`)
+        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`),
       );
     }
 
     if (giveaway.ended) {
       return console.log(
-        color.yellow("[WARN] ") + color.white(`Giveaway ${id} already ended.`)
+        color.yellow("[WARN] ") + color.white(`Giveaway ${id} already ended.`),
       );
     }
 
     giveaway.ended = true;
     giveaway.endTime = Date.now();
 
-    let winners = [];
+    const winners = [];
     const participants = [...giveaway.participants];
     const winnerCount = Math.min(giveaway.winnerCount, participants.length);
 
@@ -117,8 +117,8 @@ async function endGiveaway(id) {
       console.log(
         color.yellow("[WARN] ") +
           color.white(
-            `No winners selected for giveaway ${id} due to insufficient participants.`
-          )
+            `No winners selected for giveaway ${id} due to insufficient participants.`,
+          ),
       );
     }
   } catch (error) {
@@ -133,7 +133,7 @@ async function getGiveawayInfo(id) {
     if (!giveawayData) {
       console.log(
         color.red("[ERROR] ") +
-          color.white("No giveaways found for this guild.")
+          color.white("No giveaways found for this guild."),
       );
       return null;
     }
@@ -142,7 +142,7 @@ async function getGiveawayInfo(id) {
 
     if (!giveaway) {
       return console.log(
-        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`)
+        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`),
       );
     }
 
@@ -159,13 +159,13 @@ async function listGiveaways() {
     if (!giveawayData) {
       return console.log(
         color.red("[ERROR] ") +
-          color.white("No giveaways found for this guild.")
+          color.white("No giveaways found for this guild."),
       );
     }
 
     if (giveawayData.giveaways.length === 0) {
       return console.log(
-        color.yellow("[WARN] ") + color.white("No active giveaways.")
+        color.yellow("[WARN] ") + color.white("No active giveaways."),
       );
     }
 
@@ -179,12 +179,12 @@ async function listGiveaways() {
 
 async function rerollGiveaway(id) {
   try {
-    let giveawayData = await Giveaways.findOne({ guildId: config.guildId });
+    const giveawayData = await Giveaways.findOne({ guildId: config.guildId });
 
     if (!giveawayData) {
       return console.error(
         color.red("[ERROR] ") +
-          color.white("No giveaways found for this guild.")
+          color.white("No giveaways found for this guild."),
       );
     }
 
@@ -192,14 +192,14 @@ async function rerollGiveaway(id) {
 
     if (!giveaway) {
       return console.log(
-        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`)
+        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`),
       );
     }
 
     if (!giveaway.ended) {
       return console.log(
         color.yellow("[WARN] ") +
-          color.white(`Giveaway ${id} is not ended yet.`)
+          color.white(`Giveaway ${id} is not ended yet.`),
       );
     }
 
@@ -225,8 +225,8 @@ async function rerollGiveaway(id) {
       console.log(
         color.yellow("[WARN] ") +
           color.white(
-            `No winners selected for giveaway ${id} due to insufficient participants.`
-          )
+            `No winners selected for giveaway ${id} due to insufficient participants.`,
+          ),
       );
     }
 
@@ -241,15 +241,15 @@ async function participateInGiveaway(
   userId,
   messageId,
   interaction,
-  durationTimestamp
+  durationTimestamp,
 ) {
   try {
-    let giveawayData = await Giveaways.findOne({ guildId: config.guildId });
+    const giveawayData = await Giveaways.findOne({ guildId: config.guildId });
 
     if (!giveawayData) {
       console.error(
         color.red("[ERROR] ") +
-          color.white("No giveaways found in the database.")
+          color.white("No giveaways found in the database."),
       );
 
       return { success: false, error: "No giveaways found in the database." };
@@ -263,48 +263,49 @@ async function participateInGiveaway(
     if (!giveaway) {
       console.log(
         color.yellow("[WARN] ") +
-          color.white(`Giveaway ${giveawayId} not found.`)
+          color.white(`Giveaway ${giveawayId} not found.`),
       );
 
-      return { success: false, error: `That giveaway does not exist.` };
+      return { success: false, error: "That giveaway does not exist." };
     }
 
     if (giveaway.ended) {
       console.log(
         color.yellow("[WARN] ") +
-          color.white(`Giveaway ${giveawayId} already ended.`)
+          color.white(`Giveaway ${giveawayId} already ended.`),
       );
 
-      return { success: false, error: `That giveaway has already ended.` };
+      return { success: false, error: "That giveaway has already ended." };
     }
 
     if (giveawayRequiresRole && !userRoles.includes(giveaway.requiredRole)) {
       console.log(
         color.yellow("[WARN] ") +
           color.white(
-            `User ${userId} does not have the required role: ${giveaway.requiredRole}.`
-          )
+            `User ${userId} does not have the required role: ${giveaway.requiredRole}.`,
+          ),
       );
 
       return {
         success: false,
-        error: `You do not have the required role to participate in this giveaway.`,
+        error:
+          "You do not have the required role to participate in this giveaway.",
       };
     }
 
     if (giveaway.participants.includes(userId)) {
       giveaway.participants = giveaway.participants.filter(
-        (id) => id !== userId
+        (id) => id !== userId,
       );
       console.log(
         color.yellow("[INFO] ") +
-          color.white(`User ${userId} removed from participation.`)
+          color.white(`User ${userId} removed from participation.`),
       );
     } else {
       giveaway.participants.push(userId);
       console.log(
         color.green("[INFO] ") +
-          color.white(`User ${userId} added to participation.`)
+          color.white(`User ${userId} added to participation.`),
       );
     }
 
@@ -316,7 +317,8 @@ async function participateInGiveaway(
       giveawayMessage = await interaction.channel.messages.fetch(messageId);
     } catch (error) {
       console.error(
-        color.red("[ERROR] ") + color.white("Unable to fetch giveaway message.")
+        color.red("[ERROR] ") +
+          color.white("Unable to fetch giveaway message."),
       );
       return { success: false, error: "Unable to fetch giveaway message." };
     }
@@ -329,14 +331,14 @@ async function participateInGiveaway(
         .setLabel(`${giveaway.participants.length}`)
         .setStyle(ButtonStyle.Secondary)
         .setDisabled(true)
-        .setCustomId(`participants-button-${giveaway.id}`)
+        .setCustomId(`participants-button-${giveaway.id}`),
     );
 
     await giveawayMessage.edit({
       embeds: [
         new EmbedBuilder()
-          .setTitle(`New Giveaway 🎉`)
-          .setDescription(`A new giveaway has been started!`)
+          .setTitle("New Giveaway 🎉")
+          .setDescription("A new giveaway has been started!")
           .setColor(config.general.botColor)
           .addFields(
             { name: "Prize", value: `${giveaway.prize}`, inline: false },
@@ -356,7 +358,7 @@ async function participateInGiveaway(
                 giveaway.requiredRole ? giveaway.requiredRole : "None"
               }`,
               inline: false,
-            }
+            },
           ),
       ],
       components: [updatedRow],
@@ -378,7 +380,7 @@ async function checkGiveaway(id, client) {
     if (!giveawayData) {
       return console.error(
         color.red("[ERROR] ") +
-          color.white("No giveaways found in the database.")
+          color.white("No giveaways found in the database."),
       );
     }
 
@@ -386,7 +388,7 @@ async function checkGiveaway(id, client) {
 
     if (!giveaway) {
       return console.log(
-        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`)
+        color.yellow("[WARN] ") + color.white(`Giveaway ${id} not found.`),
       );
     }
 
@@ -397,7 +399,7 @@ async function checkGiveaway(id, client) {
     const giveawayChannel = client.channels.cache.get(giveaway.channelId);
     if (!giveawayChannel) {
       console.error(
-        color.red("[ERROR] ") + color.white("Unable to find giveaway channel.")
+        color.red("[ERROR] ") + color.white("Unable to find giveaway channel."),
       );
       return;
     }
@@ -407,7 +409,7 @@ async function checkGiveaway(id, client) {
       .catch((e) => {
         console.error(
           color.red("[ERROR] ") +
-            color.white("Unable to fetch giveaway message.")
+            color.white("Unable to fetch giveaway message."),
         );
         return null;
       });
@@ -425,13 +427,13 @@ async function checkGiveaway(id, client) {
       if (!giveaway) {
         return console.log(
           color.yellow("[WARN] ") +
-            color.white(`Giveaway ${id} not found after update.`)
+            color.white(`Giveaway ${id} not found after update.`),
         );
       }
 
       const embed = new EmbedBuilder()
         .setTitle("Giveaway Ended 🎉")
-        .setDescription(`This giveaway has ended.`)
+        .setDescription("This giveaway has ended.")
         .setColor(config.general.botColor)
         .addFields(
           { name: "🎁 Prize", value: `${giveaway.prize}`, inline: false },
@@ -441,7 +443,7 @@ async function checkGiveaway(id, client) {
               ? `${giveaway.winners.map((w) => `<@${w}>`).join(", ")}`
               : "No winners...",
             inline: false,
-          }
+          },
         );
 
       const row = new ActionRowBuilder().addComponents(
@@ -449,7 +451,7 @@ async function checkGiveaway(id, client) {
           .setLabel("Participate")
           .setStyle(ButtonStyle.Secondary)
           .setCustomId(`participate-giveaway-${giveaway.id}`)
-          .setDisabled(true)
+          .setDisabled(true),
       );
 
       const message = await giveawayMessage.edit({
