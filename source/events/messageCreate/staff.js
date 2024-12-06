@@ -1,3 +1,6 @@
+// Copyright 2024 Nether Host. All rights reserved.
+// Unauthorized use, modification, or distribution of this code is prohibited.
+
 const { isStaff, updateStaffTicketMessages } = require("../../utils/staff.js");
 const handleError = require("../../utils/handle-error.js");
 

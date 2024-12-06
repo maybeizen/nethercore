@@ -1,3 +1,6 @@
+// Copyright 2024 Nether Host. All rights reserved.
+// Unauthorized use, modification, or distribution of this code is prohibited.
+
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const handleError = require("../../utils/handle-error.js");
 const { loadMessages, languageChoices } = require("../../utils/language.js");
