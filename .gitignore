@@ -1,5 +1,12 @@
+# local stuff
 .env
+.vscode
+
+# dependencies
 node_modules
 package-lock.json
-.vscode
+
+# sensitive info
 backups
+transcripts
+source/data/memory.json
