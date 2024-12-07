@@ -23,3 +23,9 @@ dist/
 backups/
 transcripts/
 source/data/memory.json
+
+# go
+source/utils/ai/main.exe
+source/utils/ai/main
+source/utils/ai/go.mod
+source/utils/ai/go.sum
