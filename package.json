@@ -4,11 +4,12 @@
   "description": "",
   "main": "source/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node --watch-path=./source source/index.js",
-    "start": "node source/index.js",
+    "dev": "cross-env NODE_ENV=development npm run build:go && node source/index.js",
+    "start": "npm run build:go && node source/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "build:go": "node scripts/build-go.js"
   },
   "dependencies": {
     "archiver": "^7.0.1",

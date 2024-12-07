@@ -4,6 +4,9 @@
 const handleError = require("./handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
+const config = JSON5.parse(
+  fs.readFileSync("source/config/general.json5", "utf-8")
+);
 const OpenAI = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.openai_key,
@@ -19,29 +22,22 @@ const path = require("path");
 
 async function generateAiResponse(prompt, language, context = "") {
   try {
-    const goExePath = path.join(
-      __dirname,
-      "ai",
-      process.platform === "win32" ? "main.exe" : "main"
-    );
+    // Path to the Go executable relative to this file
+    const goExePath = path.join(__dirname, "ai", "main");
 
+    // Escape special characters in the arguments
     const escapedPrompt = JSON.stringify(prompt);
     const escapedLanguage = JSON.stringify(language);
     const escapedContext = JSON.stringify(context);
 
     return new Promise((resolve, reject) => {
-      const quotedPath =
-        process.platform === "win32" ? `"${goExePath}"` : `'${goExePath}'`;
-
       exec(
-        `${quotedPath} ${escapedPrompt} ${escapedLanguage} ${escapedContext}`,
-        {
-          maxBuffer: 1024 * 1024,
-          windowsVerbatimArguments: true,
-        },
+        `${goExePath} ${escapedPrompt} ${escapedLanguage} ${escapedContext}`,
+        { maxBuffer: 1024 * 1024 }, // Increase buffer size if needed
         (error, stdout, stderr) => {
           if (error) {
             console.error(`Go execution error: ${error}`);
+            // Fallback to OpenAI Node.js implementation
             return fallbackToOpenAI(prompt, language, context)
               .then(resolve)
               .catch(reject);
@@ -53,6 +49,7 @@ async function generateAiResponse(prompt, language, context = "") {
             resolve({ content: stdout.trim() });
           } catch (e) {
             console.error(`Error parsing Go output: ${e}`);
+            // Fallback to OpenAI Node.js implementation
             fallbackToOpenAI(prompt, language, context)
               .then(resolve)
               .catch(reject);
@@ -62,10 +59,12 @@ async function generateAiResponse(prompt, language, context = "") {
     });
   } catch (error) {
     handleError(error);
+    // Fallback to OpenAI Node.js implementation
     return fallbackToOpenAI(prompt, language, context);
   }
 }
 
+// Rename the existing implementation to serve as fallback
 async function fallbackToOpenAI(prompt, language, context = "") {
   try {
     const data = [
