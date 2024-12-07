@@ -12,9 +12,11 @@ const backupDirectory = path.resolve(__dirname, "../", "backups");
 const files = [
   ".env",
   ".gitignore",
-  "package-lock.json",
+  "pnpm-lock.yaml",
   "package.json",
   "readme.md",
+  "eslint.config.mjs",
+  "build.js",
 ];
 
 const dirs = ["messages", "transcripts", "source"];
@@ -35,7 +37,7 @@ function createBackup() {
 
   console.log(
     color.green("[INFO] ") +
-      color.white(`Creating backup: ${path.basename(file)}`),
+      color.white(`Creating backup: ${path.basename(file)}`)
   );
 
   archive.on("error", (err) => {
@@ -59,7 +61,7 @@ function createBackup() {
       archive.directory(folderPath, path.basename(folder));
     } else {
       console.log(
-        color.red("[ERROR] ") + color.white(`${folderPath} not found`),
+        color.red("[ERROR] ") + color.white(`${folderPath} not found`)
       );
     }
   });
