@@ -4,9 +4,6 @@
 const handleError = require("./handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
-const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
-);
 const OpenAI = require("openai");
 const openai = new OpenAI({
   apiKey: process.env.openai_key,
@@ -15,10 +12,61 @@ const systemPrompt = fs.readFileSync("source/config/ai/prompt.txt", "utf-8");
 const infoDB = fs.readFileSync("source/config/ai/info.db.txt", "utf-8");
 const translatePrompt = fs.readFileSync(
   "source/config/ai/translate.txt",
-  "utf-8",
+  "utf-8"
 );
+const { exec } = require("child_process");
+const path = require("path");
 
 async function generateAiResponse(prompt, language, context = "") {
+  try {
+    const goExePath = path.join(
+      __dirname,
+      "ai",
+      process.platform === "win32" ? "main.exe" : "main"
+    );
+
+    const escapedPrompt = JSON.stringify(prompt);
+    const escapedLanguage = JSON.stringify(language);
+    const escapedContext = JSON.stringify(context);
+
+    return new Promise((resolve, reject) => {
+      const quotedPath =
+        process.platform === "win32" ? `"${goExePath}"` : `'${goExePath}'`;
+
+      exec(
+        `${quotedPath} ${escapedPrompt} ${escapedLanguage} ${escapedContext}`,
+        {
+          maxBuffer: 1024 * 1024,
+          windowsVerbatimArguments: true,
+        },
+        (error, stdout, stderr) => {
+          if (error) {
+            console.error(`Go execution error: ${error}`);
+            return fallbackToOpenAI(prompt, language, context)
+              .then(resolve)
+              .catch(reject);
+          }
+          if (stderr) {
+            console.warn(`Go stderr: ${stderr}`);
+          }
+          try {
+            resolve({ content: stdout.trim() });
+          } catch (e) {
+            console.error(`Error parsing Go output: ${e}`);
+            fallbackToOpenAI(prompt, language, context)
+              .then(resolve)
+              .catch(reject);
+          }
+        }
+      );
+    });
+  } catch (error) {
+    handleError(error);
+    return fallbackToOpenAI(prompt, language, context);
+  }
+}
+
+async function fallbackToOpenAI(prompt, language, context = "") {
   try {
     const data = [
       {
@@ -40,7 +88,10 @@ async function generateAiResponse(prompt, language, context = "") {
     return response.choices[0].message;
   } catch (error) {
     handleError(error);
-    return "Failed to generate a response from OpenAI. Please try again later.";
+    return {
+      content:
+        "Failed to generate a response from OpenAI. Please try again later.",
+    };
   }
 }
 
