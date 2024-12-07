@@ -4,14 +4,15 @@
   "description": "",
   "main": "source/index.js",
   "scripts": {
-    "dev": "node --watch-path=./source source/index.js",
+    "dev": "cross-env NODE_ENV=development node --watch-path=./source source/index.js",
     "start": "node dist/index.js",
-    "build": "node build.js",
+    "build": "cross-env NODE_ENV=development node build.js",
     "build:prod": "cross-env NODE_ENV=production node build.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "clean": "rimraf dist",
-    "deploy": "npm run clean && npm run build:prod && npm start"
+    "deploy": "npm run clean && npm run build:prod && npm start",
+    "deploy:dev": "npm run clean && npm run build && npm start"
   },
   "dependencies": {
     "archiver": "^7.0.1",
