@@ -1,35 +1,51 @@
 const { exec } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const color = require("chalk");
 
-console.log("Building Go binaries...");
+console.log(color.green("[INFO] ") + color.white("Building Go binaries..."));
 
 const goDirs = [path.join("source", "utils", "ai")];
 
 let failed = false;
 
 for (const dir of goDirs) {
-  console.log(`Building ${dir}...`);
+  console.log(color.green("[INFO] ") + color.white(`Building ${dir}...`));
 
   if (!fs.existsSync(path.join(dir, "go.mod"))) {
-    console.log(`Initializing Go module in ${dir}...`);
+    console.log(
+      color.green("[INFO] ") +
+        color.white(`Initializing Go module in ${dir}...`)
+    );
     const moduleName = path.basename(dir);
     const initCommand = `cd "${dir}" && go mod init ${moduleName}`;
 
     try {
       exec(initCommand, (error, stdout, stderr) => {
         if (error) {
-          console.error(`Error initializing module in ${dir}:`, error);
+          console.error(
+            color.red("[ERROR] ") +
+              color.white(`Error initializing module in ${dir}:`, error)
+          );
           failed = true;
           return;
         }
         if (stderr) {
-          console.warn(`Warnings for ${dir} module init:`, stderr);
+          console.warn(
+            color.yellow("[WARN] ") +
+              color.white(`Warnings for ${dir} module init:`, stderr)
+          );
         }
-        console.log(`Successfully initialized module in ${dir}`);
+        console.log(
+          color.green("[INFO] ") +
+            color.white(`Successfully initialized module in ${dir}`)
+        );
       });
     } catch (error) {
-      console.error(`Failed to initialize module in ${dir}`);
+      console.error(
+        color.red("[ERROR] ") +
+          color.white(`Failed to initialize module in ${dir}`)
+      );
       failed = true;
       continue;
     }
@@ -43,17 +59,25 @@ for (const dir of goDirs) {
   try {
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        console.error(`Error building ${dir}:`, error);
+        console.error(
+          color.red("[ERROR] ") + color.white(`Error building ${dir}:`, error)
+        );
         failed = true;
         return;
       }
       if (stderr) {
-        console.warn(`Warnings for ${dir}:`, stderr);
+        console.warn(
+          color.yellow("[WARN] ") + color.white(`Warnings for ${dir}:`, stderr)
+        );
       }
-      console.log(`Successfully built ${dir}`);
+      console.log(
+        color.green("[INFO] ") + color.white(`Successfully built ${dir}`)
+      );
     });
   } catch (error) {
-    console.error(`Failed to build ${dir}`);
+    console.error(
+      color.red("[ERROR] ") + color.white(`Failed to build ${dir}`)
+    );
     failed = true;
   }
 }
