@@ -2,7 +2,6 @@
 // Unauthorized use, modification, or distribution of this code is prohibited.
 
 const handleError = require("./handle-error.js");
-const JSON5 = require("json5");
 const fs = require("fs");
 const OpenAI = require("openai");
 const openai = new OpenAI({
