@@ -31,6 +31,19 @@ const userSchema = new Schema({
     moderator: { type: String },
     reason: { type: String },
   },
+  punishments: {
+    banned: {
+      status: { type: Boolean },
+      moderator: { type: String },
+      reason: { type: String },
+    },
+    muted: {
+      status: { type: Boolean },
+      duration: { type: Number },
+      moderator: { type: String },
+      reason: { type: String },
+    },
+  },
   createdAt: { type: Date },
   joinedAt: { type: Date },
   leftAt: { type: Date },

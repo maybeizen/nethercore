@@ -23,10 +23,8 @@ func generateAIResponse(prompt, language, context string) (string, error) {
     apiKey := os.Getenv("openai_key")
     url := "https://api.openai.com/v1/chat/completions"
 
-    // Get the absolute path to the project root
     projectRoot := filepath.Join("..", "..", "..")
     
-    // Read files using project root path
     promptFile := filepath.Join(projectRoot, "source", "config", "ai", "prompt.txt")
     infoFile := filepath.Join(projectRoot, "source", "config", "ai", "info.db.txt")
 
@@ -73,7 +71,7 @@ func readFile(filePath string) string {
     content, err := ioutil.ReadFile(filePath)
     if err != nil {
         log.Printf("Failed to read file %s: %v", filePath, err)
-        return "" // Return empty string instead of fatal error
+        return "" 
     }
     return string(content)
 }
@@ -93,5 +91,5 @@ func main() {
         os.Exit(1)
     }
 
-    fmt.Print(response) // Use Print instead of Println to avoid extra newline
+    fmt.Print(response) 
 }
