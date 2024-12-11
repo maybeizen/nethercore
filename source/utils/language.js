@@ -8,7 +8,7 @@ const handleError = require("./handle-error.js");
 const loadMessages = (language) => {
   try {
     return JSON5.parse(
-      fs.readFileSync(`source/config/messages/${language}.json5`, "utf-8"),
+      fs.readFileSync(`source/config/messages/${language}.json5`, "utf-8")
     );
   } catch (error) {
     handleError(error);
@@ -17,26 +17,34 @@ const loadMessages = (language) => {
 };
 
 const languageChoices = {
-  "en-US": "English (United States)",
+  ar: "العربية (Arabic)",
+  "de-DE": "Deutsch (German)",
   "en-GB": "English (United Kingdom)",
-  "es-ES": "Español",
-  ar: "العربية",
-  "hi-IN": "Hindi",
-  "id-ID": "Bahasa Indonesia",
-  "nl-NL": "Nederlands",
-  "pt-PT": "Português",
-  "zh-CN": "中文",
+  "en-US": "English (United States)",
+  "es-ES": "Español (Spanish)",
+  "fr-FR": "Français (French)",
+  "hi-IN": "Hindi (Indian)",
+  "id-ID": "Bahasa Indonesia (Indonesian)",
+  "ja-JP": "日本語 (Japanese)",
+  "nl-NL": "Nederlands (Dutch)",
+  "pt-PT": "Português (Portuguese)",
+  "ru-RU": "Русский (Russian)",
+  "zh-CN": "中文 (Chinese)",
 };
 
 const shortLanguageCodes = {
-  "en-US": "en",
-  "en-GB": "en",
-  "es-ES": "es",
   ar: "ar",
+  "de-DE": "de",
+  "en-GB": "en",
+  "en-US": "en",
+  "es-ES": "es",
+  "fr-FR": "fr",
   "hi-IN": "hi",
   "id-ID": "id",
+  "ja-JP": "ja",
   "nl-NL": "nl",
   "pt-PT": "pt",
+  "ru-RU": "ru",
   "zh-CN": "zh",
 };
 

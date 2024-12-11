@@ -9,6 +9,7 @@ const {
   Routes,
   Collection,
   WebhookClient,
+  EmbedBuilder,
 } = require("discord.js");
 const { createBackup } = require("./backup.js");
 const color = require("chalk");
@@ -35,6 +36,7 @@ const client = new Client({
   ],
 });
 
+// database connection
 (async () => {
   console.log(
     color.green("[INFO] ") + color.white("Connecting to Database...")
@@ -49,6 +51,8 @@ const client = new Client({
       color.green("[INFO] ") + color.white(`Connected to Database in ${time}ms`)
     );
   } catch (error) {
+    // kill process if database connection fails
+
     console.log(color.red("[ERROR] ") + color.white(error));
     console.log(
       color.red("[INFO] ") +
@@ -68,6 +72,12 @@ const readCommands = (dir) => {
 
     if (stat.isDirectory()) {
       readCommands(filePath);
+    } else if (file.startsWith("!")) {
+      // ignore files that start with !
+      console.log(
+        color.yellow("[WARN] ") +
+          color.white(`Skipping "${file}" as it is marked as an exclusion.`)
+      );
     } else if (file.endsWith(".js")) {
       const command = require(filePath);
       if ("data" in command && "execute" in command) {
@@ -89,7 +99,7 @@ const readCommands = (dir) => {
 };
 
 client.commands = new Collection();
-readCommands(commandsDir);
+readCommands(commandsDir); // read commands
 
 const commands = Array.from(client.commands.values()).map(
   (command) => command.data
@@ -165,6 +175,7 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
+// req:put commands to Discord API
 client.once("ready", () => {
   const rest = new REST({ version: "10" }).setToken(token);
 

@@ -7,7 +7,7 @@ const handleError = require("../../utils/handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 const { loadMessages } = require("../language.js");
 
@@ -16,9 +16,10 @@ async function changePriority(interaction, client, channel, priority) {
     const users = await User.find();
 
     const userData = users.find((user) =>
-      user.tickets.some((ticket) => ticket.id === channel.id),
+      user.tickets.some((ticket) => ticket.id === channel.id)
     );
 
+    // user isnt found in db, return error
     if (!userData) {
       return await interaction.reply({
         content: "400 Bad Request. Please try again later.",
@@ -27,11 +28,12 @@ async function changePriority(interaction, client, channel, priority) {
     }
 
     const ticketData = userData.tickets.find(
-      (ticket) => ticket.id === channel.id,
+      (ticket) => ticket.id === channel.id
     );
     const language = userData.language.value;
     const messages = loadMessages(language);
 
+    // check for correct naming conventions
     if (!channel.name.includes("ticket-")) {
       return await interaction.reply({
         content: messages.ticketMustBeInATicketError,
@@ -39,16 +41,18 @@ async function changePriority(interaction, client, channel, priority) {
       });
     }
 
+    // return error if priority is the same
     if (ticketData.priority === priority) {
       return await interaction.reply({
         content: messages.ticketPrioritySameError.replace(
           "{priority}",
-          ticketData.priority,
+          ticketData.priority
         ),
         ephemeral: true,
       });
     }
 
+    // return error if ticket is closed
     if (ticketData.status === "closed") {
       return await interaction.reply({
         content: messages.ticketCannotChangePriorityOfClosedError,
@@ -56,7 +60,7 @@ async function changePriority(interaction, client, channel, priority) {
       });
     }
 
-    ticketData.priority = priority;
+    ticketData.priority = priority; // update priority
     await userData.save();
   } catch (error) {
     handleError(interaction, error);

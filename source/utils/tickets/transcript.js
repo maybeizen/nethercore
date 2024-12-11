@@ -12,19 +12,19 @@ const fs = require("fs");
 const handleError = require("../handle-error.js");
 const JSON5 = require("json5");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 const { loadMessages } = require("../language.js");
 
 async function saveTranscript(content, channel, languageCode) {
   const transcriptDir = path.resolve("./transcripts");
-  await fs.promises.mkdir(transcriptDir, { recursive: true });
+  await fs.promises.mkdir(transcriptDir, { recursive: true }); // create dir if it doesnt exist
   const filePath = path.join(
     transcriptDir,
-    `${channel.name}-${channel.id}.txt`,
+    `${channel.name}-${channel.id}.txt` // create file
   );
 
-  await fs.promises.writeFile(filePath, content);
+  await fs.promises.writeFile(filePath, content); // write transcript data to file
   return filePath;
 }
 
@@ -32,40 +32,43 @@ async function fetchMessages(channel) {
   const messages = [];
   let lastMessageId;
 
+  // loop through ticket messages
   while (true) {
     const fetchedMessages = await channel.messages.fetch({
       limit: 100,
       before: lastMessageId,
     });
 
-    if (fetchedMessages.size === 0) break;
+    if (fetchedMessages.size === 0) break; // break if no messages are fetched
 
-    messages.push(...fetchedMessages.values());
+    messages.push(...fetchedMessages.values()); // add fetched messages to array
     lastMessageId = fetchedMessages.last().id;
   }
 
-  return messages;
+  return messages; // return messages
 }
 
 function formatMessages(messages) {
   let lastDate = "";
 
   return messages.reverse().reduce((transcript, msg) => {
-    if (msg.author.bot) return transcript;
+    if (msg.author.bot) return transcript; // skip bot messages
 
-    const messageDate = new Date(msg.createdAt);
+    const messageDate = new Date(msg.createdAt); // get message date
     const currentDate = messageDate.toLocaleDateString("en-US", {
       timeZone: "America/New_York",
       month: "2-digit",
       day: "2-digit",
       year: "numeric",
-    });
+    }); // convert message date to string
 
+    // add date header if date is different
     if (currentDate !== lastDate) {
       transcript += `\n=== ${currentDate} ===\n`;
       lastDate = currentDate;
     }
 
+    // format message time
     const time = messageDate.toLocaleTimeString("en-US", {
       timeZone: "America/New_York",
       hour: "2-digit",
@@ -73,6 +76,7 @@ function formatMessages(messages) {
       hour12: true,
     });
 
+    // show attachments (if any) as links
     const attachments = msg.attachments.map((att) => att.url).join("\n");
 
     transcript += `[${time}] ${msg.author.username}: ${msg.content}\n${
@@ -90,7 +94,7 @@ async function sendTranscript(user, transcript, client, languageCode) {
         .setLabel(" ")
         .setURL("https://trustpilot.com/evaluate/nether.host")
         .setStyle(ButtonStyle.Link)
-        .setEmoji("1289603836360523907"),
+        .setEmoji("1289603836360523907")
     );
 
     const messages = loadMessages(languageCode);
