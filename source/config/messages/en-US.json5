@@ -154,4 +154,6 @@
   },
   ticketInvalidPriorityError: "The provided priority is invalid.",
   invalidEmailError: "You provided an invalid email address.",
+  ticketSystemDisabledError: "The ticket system is currently disabled.",
+  ticketClientOnlyError: "Tickets are currently limited to clients.",
 }

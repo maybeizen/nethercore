@@ -12,7 +12,7 @@ const { loadMessages, languageChoices } = require("../../utils/language.js");
 const registerUser = require("../../utils/register-user.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -25,16 +25,20 @@ module.exports = {
         .setDescription("Choose which language to use.")
         .setRequired(true)
         .addChoices(
-          { name: "English (United States)", value: "en-US" },
+          { name: "العربية (Arabic)", value: "ar" },
+          { name: "中文 (Chinese)", value: "zh-CN" },
+          { name: "Deutsch (German)", value: "de-DE" },
           { name: "English (United Kingdom)", value: "en-GB" },
-          { name: "Español", value: "es-ES" },
-          { name: "العربية", value: "ar" },
-          { name: "Hindi", value: "hi-IN" },
-          { name: "Bahasa Indonesia", value: "id-ID" },
-          { name: "Nederlands", value: "nl-NL" },
-          { name: "Português", value: "pt-PT" },
-          { name: "中文", value: "zh-CN" },
-        ),
+          { name: "English (United States)", value: "en-US" },
+          { name: "Español (Spanish)", value: "es-ES" },
+          { name: "Français (French)", value: "fr-FR" },
+          { name: "Hindi (Indian)", value: "hi-IN" },
+          { name: "Bahasa Indonesia (Indonesian)", value: "id-ID" },
+          { name: "日本語 (Japanese)", value: "ja-JP" },
+          { name: "Nederlands (Dutch)", value: "nl-NL" },
+          { name: "Português (Portuguese)", value: "pt-PT" },
+          { name: "Русский (Russian)", value: "ru-RU" }
+        )
     ),
 
   async execute(interaction, client) {
@@ -58,13 +62,13 @@ module.exports = {
             .setTitle(
               messages.languageUpdatedTitle.replace(
                 "{language}",
-                languageChoices[language],
-              ),
+                languageChoices[language]
+              )
             )
             .setDescription(
               messages.languageUpdatedDescription
                 .replace("{user}", interaction.user)
-                .replace("{language}", languageChoices[language]),
+                .replace("{language}", languageChoices[language])
             )
             .setColor(config.general.botColor)
             .setFooter({

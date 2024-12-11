@@ -4,7 +4,7 @@
   "description": "",
   "main": "source/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development pnpm run build:go && node source/index.js",
+    "dev": "cross-env NODE_ENV=development pnpm run build:go && node --watch-path=./source source/index.js",
     "start": "pnpm run build:go && node source/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
