@@ -23,6 +23,7 @@ dist/
 backups/
 transcripts/
 source/data/memory.json
+NetherCore.zip
 
 # go
 **/*.exe
