@@ -236,8 +236,7 @@ client.login(token).catch((error) => {
 });
 
 function sendErrorWebhook(error) {
-  const webhookUrl =
-    "https://discord.com/api/webhooks/1308986326095495188/_kOH_ZgWA14usSZ2sF8L_sTZsJd_cXvNXu1FxV74sg9rze2eZF-1oB0H4jIts5frrufK";
+  const webhookUrl = process.env.webhook_url;
   const webhookClient = new WebhookClient({ url: webhookUrl });
 
   webhookClient.send({
