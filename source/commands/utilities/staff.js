@@ -19,8 +19,8 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want to add as a staff member.")
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -30,8 +30,8 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want to remove as a staff member.")
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction) {
@@ -43,11 +43,11 @@ module.exports = {
 
       if (
         !interaction.member.permissions.has(
-          PermissionsBitField.Flags.Administrator,
+          PermissionsBitField.Flags.Administrator
         )
       ) {
         return interaction.reply(
-          "You do not have permission to use this command.",
+          "You do not have permission to use this command."
         );
       }
 

@@ -1,7 +1,17 @@
 {
   "name": "nethercore",
   "version": "1.0.0",
-  "description": "",
+  "description": "An advanced bot built for managing all things Nether Host.",
+  "author": "maybeizen",
+  "license": "All rights reserved.",
+  "homepage": "https://nether.host",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maybeizen/nethercore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/maybeizen/nethercore/issues"
+  },
   "main": "source/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development pnpm run build:go && node --watch-path=./source source/index.js",

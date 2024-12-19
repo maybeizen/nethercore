@@ -73,7 +73,7 @@ const readCommands = (dir) => {
     if (stat.isDirectory()) {
       readCommands(filePath);
     } else if (file.startsWith("!")) {
-      // ignore files that start with !
+      // ignore files that start with "!"
       console.log(
         color.yellow("[WARN] ") +
           color.white(`Skipping "${file}" as it is marked as an exclusion.`)

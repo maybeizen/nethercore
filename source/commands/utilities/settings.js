@@ -6,10 +6,9 @@ const {
   EmbedBuilder,
   PermissionsBitField,
 } = require("discord.js");
-const { ticketAccess } = require("./!ticket-access.js");
-const handleError = require("../../../utils/handle-error.js");
-const User = require("../../../models/User.js");
-const { loadMessages } = require("../../../utils/language.js");
+const { ticketAccess } = require("../../utils/tickets/access.js");
+const handleError = require("../../utils/handle-error.js");
+const User = require("../../models/User.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 
@@ -31,7 +30,7 @@ module.exports = {
             .setDescription("Manage ticket access settings.")
             .addStringOption((option) =>
               option
-                .setName("access")
+                .setName("value")
                 .setDescription("Choose who can access the ticket system.")
                 .setRequired(true)
                 .addChoices(
@@ -68,7 +67,7 @@ module.exports = {
             });
           }
 
-          const value = interaction.options.getString("access");
+          const value = interaction.options.getString("value");
           await ticketAccess(interaction, value);
 
           await interaction.reply({

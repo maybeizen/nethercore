@@ -12,12 +12,12 @@
   - Visit [Servox](https://servox.org) for free plan details and server management.
 
 ### Paid Plans (via Nether Host):
-  - **Villager Plan**: 2.5 vCores, 4GB RAM, $2.99/month
-  - **Trader Plan**: 3 vCores, 6GB RAM, $4.99/month
-  - **Llama Plan**: 3.5 vCores, 8GB RAM, $6.99/month
-  - **Witch Plan**: 4 vCores, 10GB RAM, $8.99/month
-  - **Enderman Plan**: 4.5 vCores, 12GB RAM, $10.99/month
-  - **Guardian Plan**: 5 vCores, 16GB RAM, $14.99/month
+  - **Minecraft XS**: 2 vCores, 4GB RAM, $3.99/month
+  - **Minecraft S**: 3 vCores, 8GB RAM, $4.99/month
+  - **Minecraft M**: 4 vCores, 12GB RAM, $6.99/month
+  - **Minecraft L**: 5 vCores, 16GB RAM, $8.99/month
+  - **Minecraft XL**: 6 vCores, 24GB RAM, $10.99/month
+  - **Minecraft 2XL**: 6 vCores, 32GB RAM, $14.99/month
 
 ## Plan Recommendations:
 If a user mentions the **Free Plan** offered by Servox, encourage them to explore **Paid Plans** at Nether Host for:

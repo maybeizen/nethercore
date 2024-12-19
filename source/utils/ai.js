@@ -13,49 +13,8 @@ const translatePrompt = fs.readFileSync(
   "source/config/ai/translate.txt",
   "utf-8"
 );
-const { exec } = require("child_process");
-const path = require("path");
 
 async function generateAiResponse(prompt, language, context = "") {
-  try {
-    const goExePath = path.join(__dirname, "ai", "main");
-
-    const escapedPrompt = JSON.stringify(prompt);
-    const escapedLanguage = JSON.stringify(language);
-    const escapedContext = JSON.stringify(context);
-
-    return new Promise((resolve, reject) => {
-      exec(
-        `${goExePath} ${escapedPrompt} ${escapedLanguage} ${escapedContext}`,
-        { maxBuffer: 1024 * 1024 },
-        (error, stdout, stderr) => {
-          if (error) {
-            console.error(`Go execution error: ${error}`);
-            return fallbackToOpenAI(prompt, language, context)
-              .then(resolve)
-              .catch(reject);
-          }
-          if (stderr) {
-            console.warn(`Go stderr: ${stderr}`);
-          }
-          try {
-            resolve({ content: stdout.trim() });
-          } catch (e) {
-            console.error(`Error parsing Go output: ${e}`);
-            fallbackToOpenAI(prompt, language, context)
-              .then(resolve)
-              .catch(reject);
-          }
-        }
-      );
-    });
-  } catch (error) {
-    handleError(error);
-    return fallbackToOpenAI(prompt, language, context);
-  }
-}
-
-async function fallbackToOpenAI(prompt, language, context = "") {
   try {
     const data = [
       {
