@@ -65,6 +65,10 @@ async function closeTicket(interaction, client, channel) {
     user.markModified("tickets");
     await user.save();
 
+    await interaction.channel.edit({
+      parent: config.categories.tickets.closedId,
+    });
+
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setLabel(" ")

@@ -15,11 +15,15 @@ const { createBackup } = require("./backup.js");
 const color = require("chalk");
 const fs = require("fs");
 const path = require("path");
+const JSON5 = require("json5");
 const mongoose = require("mongoose");
 const embed = require("./config/embed.config.js");
 const eventsDir = path.join(__dirname, "/events");
 const commandsDir = path.join(__dirname, "/commands");
 const eventFolders = fs.readdirSync(eventsDir);
+const config = JSON5.parse(
+  fs.readFileSync("source/config/general.json5", "utf8")
+);
 const handleError = require("./utils/handle-error.js");
 const start = Date.now();
 const { token } = process.env;
