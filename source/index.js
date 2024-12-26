@@ -38,6 +38,9 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.GuildPresences,
   ],
+  allowedMentions: {
+    parse: [],
+  },
 });
 
 // database connection
