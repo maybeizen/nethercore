@@ -22,7 +22,7 @@ async function generateAiResponse(prompt, language, context = "") {
       },
       {
         role: "user",
-        content: `Below is a summary of your previous conversations with the user you are chatting with:\n${context}\n\nPlease analyze the given prompt and respond in ${language} (prioritize this language). If the language is Hindi, use Romanized Hindi for your response. At the end of your message, append the following line in ${language}: \n\n"-# Not in your language? Change with </language:1288675132381986838>."\n\n${prompt}`,
+        content: `Below is a summary of your previous conversations with the user you are chatting with:\n${context}\n\nPlease analyze the given prompt and respond in ${language} (prioritize this language). If the language is Hindi, use Romanized Hindi for your response. At the end of your message, append the following on a new line: "-# </language:1319039524940283956>"\n\n${prompt}`,
       },
     ];
 
