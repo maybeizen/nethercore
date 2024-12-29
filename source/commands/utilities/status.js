@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const User = require("../../models/User.js");
@@ -11,7 +10,7 @@ const fs = require("fs");
 
 const embed = require("../../config/embed.config.js");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 const domainRegex =
@@ -32,22 +31,22 @@ module.exports = {
             .setName("ip")
             .setDescription("The IP address or domain of the server.")
             .setRequired(true)
-            .setMaxLength(128),
-        ),
+            .setMaxLength(128)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("bedrock")
         .setDescription(
-          "Check the status of a Minecraft: Bedrock Edition server.",
+          "Check the status of a Minecraft: Bedrock Edition server."
         )
         .addStringOption((option) =>
           option
             .setName("ip")
             .setDescription("The IP address or domain of the server.")
             .setRequired(true)
-            .setMaxLength(128),
-        ),
+            .setMaxLength(128)
+        )
     ),
 
   async execute(interaction, client) {
@@ -89,7 +88,7 @@ module.exports = {
             name: "Version",
             value: data?.protocol?.name ? `${data.protocol.name}` : "Unknown",
             inline: true,
-          },
+          }
         );
       }
 
@@ -122,7 +121,7 @@ module.exports = {
           name: "MOTD",
           value: `\`\`\`${data.motd.clean || "No MOTD available."}\`\`\``,
           inline: false,
-        },
+        }
       );
 
       await interaction.editReply({ embeds: [statusEmbed] });

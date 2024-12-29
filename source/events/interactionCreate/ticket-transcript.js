@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const {
   saveTranscript,
@@ -8,8 +7,6 @@ const {
   sendTranscript,
 } = require("../../utils/tickets/transcript.js");
 const handleError = require("../../utils/handle-error.js");
-const JSON5 = require("json5");
-const fs = require("fs");
 const User = require("../../models/User.js");
 const { loadMessages, shortLanguageCodes } = require("../../utils/language.js");
 const embed = require("../../config/embed.config.js");
@@ -34,7 +31,7 @@ module.exports = async (client, interaction) => {
     const transcript = await saveTranscript(
       transcriptContent,
       interaction.channel,
-      shortLanguageCodes[user.language.value],
+      shortLanguageCodes[user.language.value]
     );
     await interaction.editReply({
       content: messages.ticketTranscriptSending,

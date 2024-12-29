@@ -1,8 +1,6 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const color = require("chalk");
 const User = require("../../models/User.js");
 const embed = require("../../config/embed.config.js");
 const handleError = require("../../utils/handle-error.js");
@@ -17,7 +15,7 @@ const {
 } = require("../../utils/link.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -32,16 +30,14 @@ module.exports = {
           option
             .setName("email")
             .setDescription(
-              "The email address of your Nether Host panel account.",
+              "The email address of your Nether Host panel account."
             )
             .setRequired(true)
-            .setMaxLength(128),
-        ),
+            .setMaxLength(128)
+        )
     )
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName("remove")
-        .setDescription("Unlink your Discord account"),
+      subcommand.setName("remove").setDescription("Unlink your Discord account")
     ),
 
   async execute(interaction, client) {
@@ -77,15 +73,15 @@ module.exports = {
               .setTitle(
                 messages.accountLinkedTitle.replace(
                   "{username}",
-                  interaction.user.username,
-                ),
+                  interaction.user.username
+                )
               )
               .setColor(config.general.botColor)
               .setDescription(
                 messages.accountLinkedDescription.replace(
                   "{user}",
-                  interaction.user,
-                ),
+                  interaction.user
+                )
               )
               .addFields({
                 name: messages.accountLinkedFields.field1.name,
@@ -107,15 +103,15 @@ module.exports = {
               .setTitle(
                 messages.accountUnlinkedTitle.replace(
                   "{username}",
-                  interaction.user.username,
-                ),
+                  interaction.user.username
+                )
               )
               .setColor(config.general.botColor)
               .setDescription(
                 messages.accountUnlinkedDescription.replace(
                   "{user}",
-                  interaction.user,
-                ),
+                  interaction.user
+                )
               )
               .setFooter({
                 text: "Nether Host | nether.host",

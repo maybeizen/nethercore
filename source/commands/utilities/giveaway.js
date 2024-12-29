@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const {
   SlashCommandBuilder,
@@ -24,7 +23,7 @@ const ms = require("ms");
 const { isStaff } = require("../../utils/staff.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -40,31 +39,31 @@ module.exports = {
             .setName("prize")
             .setDescription("The prize of the giveaway")
             .setRequired(true)
-            .setMaxLength(256),
+            .setMaxLength(256)
         )
         .addStringOption((option) =>
           option
             .setName("duration")
             .setDescription("The duration of the giveaway I.e '5m', '5h', '5d'")
-            .setRequired(true),
+            .setRequired(true)
         )
         .addIntegerOption((option) =>
           option
             .setName("winners")
             .setDescription("The number of winners of the giveaway")
             .setRequired(true)
-            .setMinValue(1),
+            .setMinValue(1)
         )
         .addRoleOption((option) =>
           option
             .setName("required-role")
-            .setDescription("A role that is required to enter the giveaway."),
+            .setDescription("A role that is required to enter the giveaway.")
         )
         .addRoleOption((option) =>
           option
             .setName("ping-role")
-            .setDescription("A role to ping on the start of the giveaway."),
-        ),
+            .setDescription("A role to ping on the start of the giveaway.")
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -74,11 +73,11 @@ module.exports = {
           option
             .setName("id")
             .setDescription("The ID of the giveaway to end.")
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     )
     .addSubcommand((subcommand) =>
-      subcommand.setName("list").setDescription("List all ongoing giveaways."),
+      subcommand.setName("list").setDescription("List all ongoing giveaways.")
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -88,8 +87,8 @@ module.exports = {
           option
             .setName("id")
             .setDescription("The ID of the giveaway to get information about.")
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -99,8 +98,8 @@ module.exports = {
           option
             .setName("id")
             .setDescription("The ID of the giveaway to reroll.")
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction, client) {
@@ -125,12 +124,12 @@ module.exports = {
         const pingRole = interaction.options.getRole("ping-role");
 
         const durationToTimestamp = `<t:${Math.floor(
-          (Date.now() + duration * 1000) / 1000,
+          (Date.now() + duration * 1000) / 1000
         )}:R>`;
 
         if (!duration) {
           return interaction.reply(
-            "An invalid value for duration was provided. Please use a valid duration like: '5m', '5h', '5d'",
+            "An invalid value for duration was provided. Please use a valid duration like: '5m', '5h', '5d'"
           );
         }
 
@@ -141,7 +140,7 @@ module.exports = {
           requiredRole,
           pingRole,
           null,
-          interaction.channel.id,
+          interaction.channel.id
         );
         const allGiveawayMongoData = await Giveaways.findOne({
           guildId: config.guildId,
@@ -154,7 +153,7 @@ module.exports = {
         }
 
         const giveawayMongoData = allGiveawayMongoData.giveaways.find(
-          (g) => g.id === giveawayData.id,
+          (g) => g.id === giveawayData.id
         );
 
         if (!giveawayMongoData) {
@@ -169,7 +168,7 @@ module.exports = {
             new EmbedBuilder()
               .setTitle("New Giveaway 🎉")
               .setDescription(
-                `A new giveaway has been started by ${interaction.user}`,
+                `A new giveaway has been started by ${interaction.user}`
               )
               .setColor(config.general.botColor)
               .addFields(
@@ -188,7 +187,7 @@ module.exports = {
                   name: "Required Role",
                   value: `${requiredRole ? requiredRole : "None"}`,
                   inline: false,
-                },
+                }
               ),
           ],
           components: [
@@ -201,7 +200,7 @@ module.exports = {
                 .setLabel("0")
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(true)
-                .setCustomId(`participants-button-${giveawayData.id}`),
+                .setCustomId(`participants-button-${giveawayData.id}`)
             ),
           ],
         });
@@ -228,7 +227,7 @@ module.exports = {
                   name: "Required Role",
                   value: `${requiredRole ? requiredRole : "None"}`,
                   inline: true,
-                },
+                }
               ),
           ],
           ephemeral: true,
@@ -258,7 +257,7 @@ module.exports = {
         let giveawayMessage;
         try {
           giveawayMessage = await interaction.channel.messages.fetch(
-            giveawayData.messageId,
+            giveawayData.messageId
           );
         } catch (error) {
           return interaction.reply({
@@ -271,7 +270,7 @@ module.exports = {
             new EmbedBuilder()
               .setTitle(`Giveaway ${id} (Ended)`)
               .setDescription(
-                `This giveaway has ended early. It was ended by ${interaction.user}`,
+                `This giveaway has ended early. It was ended by ${interaction.user}`
               )
               .setColor(config.general.botColor)
               .addFields(
@@ -287,7 +286,7 @@ module.exports = {
                       ? giveawayData.winners.map((w) => `<@${w}>`).join(", ")
                       : "No winners",
                   inline: true,
-                },
+                }
               ),
           ],
           components: [
@@ -296,7 +295,7 @@ module.exports = {
                 .setLabel("Participate")
                 .setStyle(ButtonStyle.Secondary)
                 .setDisabled(true)
-                .setCustomId(`participate-giveaway-${giveawayData.id}`),
+                .setCustomId(`participate-giveaway-${giveawayData.id}`)
             ),
           ],
         });
@@ -306,7 +305,7 @@ module.exports = {
             new EmbedBuilder()
               .setTitle(`Ended Giveaway ${id}`)
               .setDescription(
-                `The giveaway has been forcefully ended by ${interaction.user}`,
+                `The giveaway has been forcefully ended by ${interaction.user}`
               )
               .setColor(config.general.botColor)
               .addFields([
@@ -340,7 +339,7 @@ module.exports = {
           listEmbed.addFields({
             name: `Giveaway ${giveaway.id}`,
             value: `Prize: ${giveaway.prize}\nDuration: <t:${Math.floor(
-              (Date.now() + giveaway.duration * 1000) / 1000,
+              (Date.now() + giveaway.duration * 1000) / 1000
             )}:R>\nWinners: ${giveaway.winners.length}\n`,
           });
         });
@@ -353,7 +352,7 @@ module.exports = {
         const giveawayData = await getGiveawayInfo(id);
 
         const durationToTimestamp = `<t:${Math.floor(
-          (Date.now() + giveawayData.duration * 1000) / 1000,
+          (Date.now() + giveawayData.duration * 1000) / 1000
         )}:R>`;
 
         if (!giveawayData) {
@@ -390,7 +389,7 @@ module.exports = {
                 ? giveawayData.requiredRole.name
                 : "None",
               inline: true,
-            },
+            }
           );
 
         await interaction.reply({

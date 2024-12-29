@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const {
   EmbedBuilder,
@@ -10,11 +9,10 @@ const {
   ChannelType,
 } = require("discord.js");
 const handleError = require("../../utils/handle-error.js");
-const color = require("chalk");
 const fs = require("fs");
 const JSON5 = require("json5");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 const { isStaff } = require("../../utils/staff.js");
 const embed = require("../../config/embed.config.js");
@@ -28,7 +26,7 @@ module.exports = {
         .setName("channel")
         .setDescription("The channel you want the ticket system to be in.")
         .setRequired(true)
-        .addChannelTypes(ChannelType.GuildText, ChannelType.GuildAnnouncement),
+        .addChannelTypes(ChannelType.GuildText, ChannelType.GuildAnnouncement)
     ),
 
   async execute(interaction, client) {
@@ -46,7 +44,7 @@ module.exports = {
       const ticketEmbed = new EmbedBuilder()
         .setTitle("Official Support | Nether Host")
         .setDescription(
-          "Press the button below to open a ticket. You will be prompted to a private channel where you can privately speak with the support team of Nether Host.",
+          "Press the button below to open a ticket. You will be prompted to a private channel where you can privately speak with the support team of Nether Host."
         )
         .setColor(config.general.botColor)
         .addFields({
@@ -62,7 +60,7 @@ module.exports = {
         new ButtonBuilder()
           .setLabel("New Ticket")
           .setCustomId("open-ticket")
-          .setStyle(ButtonStyle.Secondary),
+          .setStyle(ButtonStyle.Secondary)
       );
 
       await channel.send({ embeds: [ticketEmbed], components: [row] });

@@ -1,8 +1,6 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const User = require("../../models/User.js");
 const handleError = require("../../utils/handle-error.js");
 const JSON5 = require("json5");
 const fs = require("fs");
@@ -10,7 +8,7 @@ const { translate } = require("../../utils/ai.js");
 
 const embed = require("../../config/embed.config.js");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -22,14 +20,14 @@ module.exports = {
         .setName("text")
         .setDescription("The text to translate.")
         .setRequired(true)
-        .setMaxLength(2000),
+        .setMaxLength(2000)
     )
     .addStringOption((option) =>
       option
         .setName("language")
         .setDescription("The language to translate to.")
         .setRequired(true)
-        .setMaxLength(32),
+        .setMaxLength(32)
     ),
 
   async execute(interaction, client) {
@@ -66,7 +64,7 @@ module.exports = {
               {
                 name: "Translation",
                 value: translation,
-              },
+              }
             ),
         ],
       });

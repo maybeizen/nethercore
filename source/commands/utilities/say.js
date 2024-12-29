@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const color = require("chalk");
@@ -10,7 +9,7 @@ const JSON5 = require("json5");
 const fs = require("fs");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -22,23 +21,23 @@ module.exports = {
         .setName("message")
         .setDescription("The message you want NetherCore to say.")
         .setRequired(true)
-        .setMaxLength(2000),
+        .setMaxLength(2000)
     )
     .addChannelOption((option) =>
       option
         .setName("channel")
         .setDescription(
-          "The channel you want NetherCore to send the message in.",
+          "The channel you want NetherCore to send the message in."
         )
-        .addChannelTypes(ChannelType.GuildText, ChannelType.GuildAnnouncement),
+        .addChannelTypes(ChannelType.GuildText, ChannelType.GuildAnnouncement)
     )
     .addBooleanOption((option) =>
       option
         .setName("anonymous")
         .setDescription(
-          "Wether or not the message should show who it was ran by.",
+          "Wether or not the message should show who it was ran by."
         )
-        .setRequired(false),
+        .setRequired(false)
     ),
 
   async execute(interaction, client) {

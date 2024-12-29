@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const {
   SlashCommandBuilder,
@@ -8,16 +7,15 @@ const {
   ActionRowBuilder,
   ButtonStyle,
 } = require("discord.js");
-const color = require("chalk");
 const User = require("../../models/User.js");
 const embed = require("../../config/embed.config.js");
 const fs = require("fs");
 const JSON5 = require("json5");
 const handleError = require("../../utils/handle-error.js");
-const { loadMessages, languageChoices } = require("../../utils/language.js");
+const { loadMessages } = require("../../utils/language.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -48,7 +46,7 @@ module.exports = {
         new ButtonBuilder()
           .setStyle(ButtonStyle.Link)
           .setURL("https://legacy.nether.host")
-          .setLabel(messages.billingButtonText),
+          .setLabel(messages.billingButtonText)
       );
 
       await interaction.reply({

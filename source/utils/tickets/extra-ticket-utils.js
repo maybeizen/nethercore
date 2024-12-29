@@ -1,3 +1,5 @@
+// Copyright 2024 Nether Host.
+
 const { getSettings } = require("../settings.js");
 const handleError = require("../handle-error.js");
 

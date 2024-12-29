@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const User = require("../models/User.js");
 const handleError = require("./handle-error.js");
@@ -8,7 +7,7 @@ const JSON5 = require("json5");
 const color = require("chalk");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 async function registerUser(user, client) {
@@ -54,7 +53,7 @@ async function registerUser(user, client) {
 
       console.log(
         color.green("[INFO] ") +
-          color.white(`Registered new member ${user.username}`),
+          color.white(`Registered new member ${user.username}`)
       );
 
       return userData;

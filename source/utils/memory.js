@@ -1,9 +1,7 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const fs = require("fs");
 const path = require("path");
-const handleError = require("./handle-error.js");
 
 const memoryFilePath = path.join("source", "data", "memory.json");
 

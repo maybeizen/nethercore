@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 require("dotenv").config();
 const {
@@ -211,15 +210,12 @@ client.once("ready", () => {
 
   createBackup();
 
-  setInterval(
-    () => {
-      console.log(
-        color.green("[INFO] ") + color.white("Running backup process...")
-      );
-      createBackup();
-    },
-    6 * 60 * 60 * 1000
-  );
+  setInterval(() => {
+    console.log(
+      color.green("[INFO] ") + color.white("Running backup process...")
+    );
+    createBackup();
+  }, 6 * 60 * 60 * 1000);
 });
 
 client.on("error", (error) => {

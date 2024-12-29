@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const handleError = require("../../utils/handle-error.js");
@@ -8,7 +7,7 @@ const fs = require("fs");
 const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")
 );
-const { loadMessages, languageChoices } = require("../../utils/language.js");
+const { loadMessages } = require("../../utils/language.js");
 const embed = require("../../config/embed.config.js");
 const User = require("../../models/User.js");
 const { registerUser } = require("../../utils/register-user.js");

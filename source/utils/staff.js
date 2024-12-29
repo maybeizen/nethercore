@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
@@ -8,7 +7,7 @@ const User = require("../models/User.js");
 const handleError = require("./handle-error.js");
 
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 let staff = {};
@@ -79,7 +78,7 @@ async function createStaffStatisticsLeaderboard() {
     console.log(staffStatistics);
 
     const sortedStatistics = staffStatistics.sort(
-      (a, b) => (b.staff.ticketMessages || 0) - (a.staff.ticketMessages || 0),
+      (a, b) => (b.staff.ticketMessages || 0) - (a.staff.ticketMessages || 0)
     );
 
     const topFiveStatistics = sortedStatistics.slice(0, 5);
@@ -134,7 +133,7 @@ async function addUserToStaff(user) {
     staff.ids = staffList;
     fs.writeFileSync(
       "source/config/staff.json5",
-      JSON.stringify(staff, null, 2),
+      JSON.stringify(staff, null, 2)
     );
 
     return "Successfully added user to staff.";
@@ -164,7 +163,7 @@ async function removeUserFromStaff(user) {
     staff.ids = staffList;
     fs.writeFileSync(
       "source/config/staff.json5",
-      JSON.stringify(staff, null, 2),
+      JSON.stringify(staff, null, 2)
     );
 
     return "Successfully removed user from staff.";

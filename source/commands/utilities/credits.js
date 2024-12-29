@@ -1,3 +1,5 @@
+// Copyright 2024 Nether Host.
+
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 const JSON5 = require("json5");
 const fs = require("fs");

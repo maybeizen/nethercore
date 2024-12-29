@@ -1,3 +1,5 @@
+// Copyright 2024 Nether Host.
+
 {
   userNotRegistered: "Aap register nahi hue hain. Kripya is samasya ko suljhane ke liye server par dobara shamil ho jayein.",
   noPermissionError: "Aapko is command ka upyog karne ki anumati nahi hai.",

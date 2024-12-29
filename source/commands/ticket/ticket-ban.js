@@ -1,16 +1,15 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const handleError = require("../../utils/handle-error.js");
-const { loadMessages, languageChoices } = require("../../utils/language.js");
+const { loadMessages } = require("../../utils/language.js");
 const { isStaff } = require("../../utils/staff.js");
 const embed = require("../../config/embed.config.js");
 const User = require("../../models/User.js");
 const JSON5 = require("json5");
 const fs = require("fs");
 const config = JSON5.parse(
-  fs.readFileSync("source/config/general.json5", "utf-8"),
+  fs.readFileSync("source/config/general.json5", "utf-8")
 );
 
 module.exports = {
@@ -25,15 +24,15 @@ module.exports = {
           option
             .setName("user")
             .setDescription("The user you want to ban from the ticket system.")
-            .setRequired(true),
+            .setRequired(true)
         )
         .addStringOption((option) =>
           option
             .setName("reason")
             .setDescription("The reason for the ban.")
             .setRequired(false)
-            .setMaxLength(256),
-        ),
+            .setMaxLength(256)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -43,10 +42,10 @@ module.exports = {
           option
             .setName("user")
             .setDescription(
-              "The user you want to unban from the ticket system.",
+              "The user you want to unban from the ticket system."
             )
-            .setRequired(true),
-        ),
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction, client) {
@@ -110,10 +109,10 @@ module.exports = {
           embeds: [
             new EmbedBuilder()
               .setTitle(
-                messages.ticketBannedTitle.replace("{username}", user.username),
+                messages.ticketBannedTitle.replace("{username}", user.username)
               )
               .setDescription(
-                messages.ticketBannedDescription.replace("{user}", user),
+                messages.ticketBannedDescription.replace("{user}", user)
               )
               .setColor(config.general.botColor)
               .addFields(
@@ -121,7 +120,7 @@ module.exports = {
                   name: messages.ticketBannedFields.field1.name,
                   value: messages.ticketBannedFields.field1.value.replace(
                     "{reason}",
-                    reason,
+                    reason
                   ),
                   inline: true,
                 },
@@ -129,10 +128,10 @@ module.exports = {
                   name: messages.ticketBannedFields.field2.name,
                   value: messages.ticketBannedFields.field2.value.replace(
                     "{moderator}",
-                    interaction.user,
+                    interaction.user
                   ),
                   inline: true,
-                },
+                }
               )
               .setFooter({
                 text: "Nether Host | nether.host",
@@ -153,7 +152,7 @@ module.exports = {
           return interaction.reply({
             content: messages.ticketCannotUnbanUserError.replace(
               "{user}",
-              user,
+              user
             ),
             ephemeral: true,
           });
@@ -177,11 +176,11 @@ module.exports = {
               .setTitle(
                 messages.ticketUnbannedTitle.replace(
                   "{username}",
-                  user.username,
-                ),
+                  user.username
+                )
               )
               .setDescription(
-                messages.ticketUnbannedDescription.replace("{user}", user),
+                messages.ticketUnbannedDescription.replace("{user}", user)
               )
               .setColor(config.general.botColor)
               .setFooter({

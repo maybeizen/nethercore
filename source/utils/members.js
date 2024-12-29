@@ -1,5 +1,4 @@
-// Copyright 2024 Nether Host. All rights reserved.
-// Unauthorized use, modification, or distribution of this code is prohibited.
+// Copyright 2024 Nether Host.
 
 const color = require("chalk");
 const handleError = require("./handle-error.js");
@@ -12,14 +11,14 @@ async function updateMemberCounter(guild, channelId) {
     return console.error(
       color.red("[ERROR] ") +
         color.white(
-          "Member Counter channel not found. Check the Channel ID in /config/general.json5",
-        ),
+          "Member Counter channel not found. Check the Channel ID in /config/general.json5"
+        )
     );
   }
 
   await channel.setName(`Members: ${memberCount}`);
   console.log(
-    color.green("[INFO] ") + color.white(`New member count: ${memberCount}`),
+    color.green("[INFO] ") + color.white(`New member count: ${memberCount}`)
   );
 }
 
@@ -29,7 +28,7 @@ async function autorole(member, role) {
       await member.roles.add(role);
       console.log(
         color.green("[INFO] ") +
-          color.white(`Added role ${role.name} to ${member.user.username}`),
+          color.white(`Added role ${role.name} to ${member.user.username}`)
       );
     } catch (error) {
       handleError(error);
@@ -38,8 +37,8 @@ async function autorole(member, role) {
     console.error(
       color.red("[ERROR] ") +
         color.white(
-          "Member or role not found. Ensure role ID in /config/general.json5",
-        ),
+          "Member or role not found. Ensure role ID in /config/general.json5"
+        )
     );
   }
 }
