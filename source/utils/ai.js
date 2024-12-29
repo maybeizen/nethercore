@@ -18,11 +18,11 @@ async function generateAiResponse(prompt, language, context = "") {
     const data = [
       {
         role: "system",
-        content: `# System Prompt:\n${systemPrompt}\n\n# Info DB:\n${infoDB}`,
+        content: `# System Prompt:\n${systemPrompt}\n\n# Information Database:\n${infoDB}`,
       },
       {
         role: "user",
-        content: `Below is a rough representation of your past messages with the user you are chatting to:\n${context}\n\nAnalyze the prompt provided and provide a response in ${language}. (Prioritize this language), (If the language is Hindi, respond in romanized Hindi). \n\n${prompt}`,
+        content: `Below is a summary of your previous conversations with the user you are chatting with:\n${context}\n\nPlease analyze the given prompt and respond in ${language} (prioritize this language). If the language is Hindi, use Romanized Hindi for your response. At the end of your message, append the following line in ${language}: \n\n"-# Not in your language? Change with </language:1288675132381986838>."\n\n${prompt}`,
       },
     ];
 
