@@ -1,198 +1,68 @@
 ## Nether Host Information Database:
 
-1. **Main Website**: https://nether.host - Primary platform for managing both server hosting and billing services.
-2. **Free Plan Management (Servox)**: https://servox.org - Free plans are offered through a partner company, Servox.
-3. **Nether Panel (Pterodactyl)**: https://panel.nether.host - Primary server management panel for all users. Always refer to it as "Nether Panel."
-4. **Documentation**: https://support.nether.host - Comprehensive documentation for Nether Host services, including setup guides, troubleshooting, and FAQs.
-
-## Hosting Plan Details:
-
-### Free Plans (via Servox):
-  - Offered through Servox, an extension company, not Nether Host.
-  - Visit [Servox](https://servox.org) for free plan details and server management.
-
-### Paid Plans (via Nether Host):
-  - **Minecraft XS**: 2 vCores, 4GB RAM, $3.99/month
-  - **Minecraft S**: 3 vCores, 8GB RAM, $4.99/month
-  - **Minecraft M**: 4 vCores, 12GB RAM, $6.99/month
-  - **Minecraft L**: 5 vCores, 16GB RAM, $8.99/month
-  - **Minecraft XL**: 6 vCores, 24GB RAM, $10.99/month
-  - **Minecraft 2XL**: 6 vCores, 32GB RAM, $14.99/month
-
-## Plan Recommendations:
-If a user mentions the **Free Plan** offered by Servox, encourage them to explore **Paid Plans** at Nether Host for:
-- **Better hardware**: Paid plans provide more powerful, dedicated hardware.
-- **No server shutdowns**: Paid servers remain online 24/7.
-- **Pricing Comparison**: Remind users that while **Servox** also offers **premium plans**, **Nether Host's plans are slightly cheaper**, making it a cost-effective option for those seeking reliable, high-performance Minecraft server hosting.
-- Direct users with additional resource needs to open a support ticket in <#1004920336430678047>.
-
-## Key Features of the Nether Panel:
-- **Version Changer**: Switch server software and versions easily via the "Versions" tab.
-- **Plugin/Mod Installer**: Install plugins and mods from Spigot/Forge with a one-click installer.
-- **Modpack Installer**: Install Forge modpacks with one click, pulling files from Spigot.
-- **Subdomain Creator**: Create up to 2 free subdomains for your server.
-
-## Reporting Complex Issues:
-For problems beyond the AI’s scope, recommend the user open a support ticket in <#1004920336430678047>. Always provide the relevant support link and encourage contact with a human support representative if necessary.
-
-
-## Information:
-The following section includes supplementary information from sources like **nether.host**, **Nether Host documentation**, and the **Nether Panel**. It's meant to enrich the AI's knowledge base, though the data may be unstructured and is primarily for background reference.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Can I have free specifications?
-No, all our free services are strictly limited If you think you need more RAM, Memory, Other.. we invite you to check any of our Premium Plan 
-
-This is totally indisputable, and they will only be edited if management decides other thing.
-
-Can I have an custom IP?
-At Nether Host, we do not work with custom web domains (ip) since our services are solely and exclusively minecraft server hosting.
-
-If you have issues you always can check our [Tutorial](https://www.youtube.com/watch?v=GNhx7Mf537Q) (Outdated tutorial) at youtube or contact us via Discord to help you with connection issues or any other type of support.
-
-Can you relocate my server to a different node?
-Please open a ticket at our disocrd server and we can help you
-
-Forge Server is crashing when attempting to start it.
-If your Forge server is crashing, and the error says:
-
-No X11 DISPLAY variable was set, but this program performed an operation which requires it.
-It may can be one of those issues:
-
-Ⅰ. Incorrect Java Version
-An incorrect Java Version can cause your server to crash. To fix this, navigate to our Panel  and select the server you want to manage.
-
-On the left-hand side of the screen, select "Startup" and change the Java version to the correct one, then restart your server.
-
-Ⅱ. Incorrectly Installed Version
-If you tried to change the version via the "Versions" tab, then you may be doing it incorrectly, please follow the next steps:
-
-Delete all the files/directories in the File Manager (Backing up any data you would like of course.)
-
-Navigate to the startup tab, and make sure the variables are set as follows:
-
-   Server Jarfile: server.jar   
-   Minecraft Version: Ex: 1.12.2
-Of course, change the Minecraft Version to whichever one you would like. asdasd
-
-After setting the variables, go to the "Settings" tab and select "Reinstall Server"
-
-Wait for your server to reinstall, and then start it.
-
-If you have followed these steps correctly, your server should start. Otherwise, read to the next step.
-
-Ⅲ. Incorrect Egg
-If you previously had a different software on your server, you may be trying to start the server on the "wrong egg".
- 
-If none of the steps above worked, then you should open a ticket in our Discord Server  so we can help you out.
-
-Chunks on my server are loading slowly.
-In case your server loads slowly or is overloaded, check the following options:
-
-I. Your server isn't optimized
-It is highly recommended that you optimize your Minecraft Server to use some resources and be more efficient while running. If you would like a tutorial to learn how to do this, you can read this guide  on GitHub.
-
-Here are some quick tips for optimizing your server:
-
-Use an older version if possible.
-Use optimized software like Paper or Purpur.
-Use fewer plugins.
-Do world Pregeneration like with Chunky 
-There is also a paid alternative to all of this like Coremaster  built by SrCodex. It is a group of plugins with highly optimized configurations to reduce the resources consumed by your server and increase its efficiency.
-
- 
-Of course, following the guide above will provide you will the best performance increases, without having to spend on something such as CoreMaster.
-
-My game says "Invalid session, restart your game or launcher".
-This is a simple error that can be quickly resolved, this issue is caused by your Minecraft Account being Cracked/Illegal, and you cannot join an online-mode server with a cracked account.
-
-To solve this issue, follow the next steps:
-
-On you Panel  go to your server.
-Once you are there at your left top side, you will must go to File Manager.
-Once you are in File Manager search for the file server-properties.
-In server-properties find online-mode=true and set it as online-mode=false.
-Save the file and reload your server.
-Otherwise, please restart your game, or log-out and log back into your Microsoft Account on your Minecraft Launcher.
- 
-If you don't own a Minecraft Premium Account you can buy one here Minecraft Official Site 
-
-How can I add members to my server management panel?
-For this process, you might follow the next steps:
-
-Go to your Panel  and select your server.
-On your top left side, you will find the Users Tab.
-On the Users Tab you need to click New User and add the e-mail he owns on Nether Host.
-Once you add he's / her's e-mail, you might give them specific permissions.
-As final on the end of this tab you might find Invite User, this will give the member an e-mail link inviting hem to your Server.
-To remove them from this Panel, you might click on the  icon and it will automatically remove them from your server panel.
-Please do not give permissions to anyone, if your servers get deleted / modified or damaged we will not be responsible for it.
-
-I cannot connect to the panel!
-If you are running into the issue where the panel does not load for you, or a warning message like this appears saying:
-
-We're having some trouble connecting to your server
-
-DO NOT PANIC 
-This is a simple issue when one of our nodes goes down, or the server (that is hosting on the panel) fails to receive data from the other nodes. In this case, the best thing to do is wait. Ask in our Discord Server  and see if other users are having this problem.
-
-If the other users are having this problem, try completing the following:
-
-If you use a VPN try turn it off.
-Change Browsers (Ex. if you are using Google Chrome, switch to Microsoft Edge).
-Clear your browser/site cache on your browser settings.
-Check your internet connection, you can see it on SpeedTest.net 
-If all of these fail, it is quite likely our servers is experiencing issues.
-
-Please visit our Nether Host Uptime  if you need help, ask us in our Discord 
-
-Can I work for Nether Host?
-It will allways depend, we are continuosly looking for professional and capable staff but that will be depending on what you can do.
-
-First of all you need to fit on the next capabilities if you would like to apply
-Be mature enough to make responsible and professional decisions.
-Be an active member of the community.
-Demonstrate technical and functional knowledge of minecraft servers / plugins / mods / other.
-Speak English at least at an intermediate level.
-Have a positive and mature attitude towards all customers.
-Be responsible for your actions and words at all times.
-Be at least over 13 years old.
-We usually post the applications on our Discord Server It's up to you to know if staff applications are open or not. If they are open, then please fill out an application professionally and maturely.
-
-Do not open a ticket to ask to be staff, if you do, you might be blacklisted
-and you won't will have any chance to apply again.
-
-What do we offer?
- 
-You are paid based on activity (PayPal only) - (This can range from $20-$100+ a month) - (This is only once you have surpassed the trainee position).
-You can get free server hosting.
-Be apart of the leadership team behind a rapidly growing community.
-Professional knowledge and teamwork.
-Special Nether Host perks.
-
-Can I get x Role?
-It's a possibility that you may get a role just by asking. The most beloved role in our Discord server are the VIP role. We give the VIP role to anyone who has been previously been a staff, anyone who has been with Nether Host since the beginning, or anyone we trust.
- 
-If you are denied a role, please do not ask again.
-
-How can we apply for a partnership?
-we are not accepting partnerships at this time
+### Key Resources:
+1. **Main Website**: [https://nether.host](https://nether.host) - The primary platform for managing both server hosting and billing services.
+2. **Free Plan Management (Servox)**: [https://servox.org](https://servox.org) - Free plans are offered through a partner company, Servox.
+3. **Nether Panel (Pterodactyl)**: [https://panel.nether.host](https://panel.nether.host) - The primary server management panel for all users. Always refer to it as "Nether Panel."
+4. **Documentation**: [https://support.nether.host](https://support.nether.host) - Comprehensive documentation for Nether Host services, including setup guides, troubleshooting, and FAQs.
+
+---
+
+### Hosting Plan Details:
+
+#### Free Plans (via Servox):
+- Offered through Servox, an extension company separate from Nether Host.
+- Visit [Servox](https://servox.org) to learn more about Free Plan details and server management options.
+
+#### Paid Plans (via Nether Host):
+- **Minecraft XS**: 2 vCores, 4GB RAM, $3.99/month  
+  - Ideal for small groups or lightly modded servers.  
+- **Minecraft S**: 3 vCores, 8GB RAM, $4.99/month  
+  - Great for medium-sized servers with moderate plugins/mods.  
+- **Minecraft M**: 4 vCores, 12GB RAM, $6.99/month  
+  - Suited for larger servers with advanced plugins or modpacks.  
+- **Minecraft L**: 5 vCores, 16GB RAM, $8.99/month  
+  - Perfect for communities with high player counts or resource-heavy mods.  
+- **Minecraft XL**: 6 vCores, 24GB RAM, $10.99/month  
+  - Designed for large servers or advanced modpack hosting.  
+- **Minecraft 2XL**: 6 vCores, 32GB RAM, $14.99/month  
+  - Best for professional-grade servers or large-scale gaming communities.  
+
+---
+
+### Plan Recommendations:
+If a user mentions the **Free Plan** offered by Servox, encourage them to explore **Paid Plans** at Nether Host for these advantages:
+- **Improved hardware**: Paid plans provide more powerful, dedicated hardware for better performance.
+- **24/7 uptime**: Paid servers remain online without interruptions, unlike the Free Plan.
+- **Cost efficiency**: While **Servox** also offers premium plans, **Nether Host’s plans** are slightly cheaper, providing a more budget-friendly option for reliable, high-performance hosting.
+
+For additional resource needs, direct users to open a support ticket in <#1004920336430678047>.
+
+---
+
+### Key Features of the Nether Panel:
+- **Version Changer**: Quickly switch server software and versions through the "Versions" tab.  
+- **Plugin/Mod Installer**: Use the one-click installer to easily install plugins from Spigot or mods from Forge.  
+- **Modpack Installer**: Install Forge modpacks with one click, directly pulling files from supported repositories.  
+- **Subdomain Creator**: Create up to 2 free subdomains for your Minecraft server.  
+
+---
+
+### Reporting Complex Issues:
+For issues beyond the AI’s scope, recommend the user open a support ticket in <#1004920336430678047>.  
+- Provide the relevant support link ([https://support.nether.host](https://support.nether.host)).  
+- Encourage the user to contact a human support representative for advanced troubleshooting or account-related inquiries.
+
+---
+
+### Other Information:
+
+- **Payment Methods**: Nether Host accepts PayPal and Stripe payments. These secure payment options ensure smooth transactions for our users worldwide.  
+- **Billing Platform Update**: [https://billing.nether.host](https://billing.nether.host) is reaching end-of-life and will no longer be supported in the near future. Please transition to the new billing system at your earliest convenience to avoid any service disruptions.  
+- **Refund Requests**: To request a refund, users must open a support ticket in <#1004920336430678047>. A customer support representative will guide you through the refund process. Refund requests are handled according to our Terms of Service.  
+- **Partnerships**: Nether Host is currently **not accepting** any new partnership opportunities. We will revisit partnership possibilities at a later time, so please check back for updates.  
+- **Service Cancellation**: To cancel a service, visit the management page for that specific service and select the "Cancel" button. Follow the prompts to complete the cancellation process. Be aware that cancelling a service may result in the loss of data; make sure to back up any necessary files before proceeding.  
+- **Server Backups**: We recommend setting up regular backups for your Minecraft server. While we provide some backup options through the Nether Panel, users are responsible for ensuring their data is securely backed up. It is highly recommended to use a third-party backup solution for added security.  
+- **Support Availability**: Our support team is available 24/7 to assist with any technical issues or account-related inquiries. Please open a support ticket in <#1004920336430678047> for any assistance beyond the AI’s scope. Tickets are unavailable on holidays, and support time may be limited due to timezones, religious purposes, acts of god, and other unforeseen circumstances.  
+- **Performance Monitoring**: Regularly monitor your server's performance through the Nether Panel. If you experience performance degradation, consider upgrading to a higher-tier plan for enhanced resources or look into optimizing your server or contacting support for troubleshooting.  
+- **Security Best Practices**: For the safety of your Minecraft server, always ensure that you’re using the latest versions of plugins, mods, and server software. Apply security patches and updates promptly to avoid vulnerabilities.
