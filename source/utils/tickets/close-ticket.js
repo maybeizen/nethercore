@@ -17,6 +17,7 @@ const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")
 );
 const { loadMessages } = require("../language.js");
+const { updateStaffClosedTickets } = require("../staff.js");
 
 async function closeTicket(interaction, client, channel) {
   try {
@@ -64,6 +65,8 @@ async function closeTicket(interaction, client, channel) {
     ticketData.closed.closedAt = Date.now();
     user.markModified("tickets");
     await user.save();
+
+    await updateStaffClosedTickets(interaction.user.id);
 
     await interaction.channel.edit({
       parent: config.categories.tickets.closedId,

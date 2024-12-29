@@ -9,7 +9,6 @@ const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")
 );
 const User = require("../../models/User.js");
-const embed = require("../../config/embed.config.js");
 const { loadMessages } = require("../../utils/language.js");
 const registerUser = require("../../utils/register-user.js");
 const { isStaff } = require("../../utils/staff.js");

@@ -5,7 +5,6 @@ const fs = require("fs");
 const path = require("path");
 const archiver = require("archiver");
 const color = require("chalk");
-const {} = require("discord.js");
 
 const backupDirectory = path.resolve(__dirname, "../", "backups");
 
