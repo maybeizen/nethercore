@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An advanced bot built for managing all things Nether Host.",
   "author": "maybeizen",
-  "license": "All rights reserved.",
+  "license": "NCCL",
   "homepage": "https://nether.host",
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
   },
   "main": "source/index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development pnpm run build:go && node --watch-path=./source source/index.js",
-    "start": "pnpm run build:go && node source/index.js",
+    "dev": "cross-env NODE_ENV=development node --watch-path=./source source/index.js",
+    "start": "node source/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "clean": "rimraf dist",
@@ -37,8 +37,6 @@
     "@eslint/js": "^9.16.0",
     "esbuild": "^0.24.0",
     "eslint": "^9.16.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.13.0",
     "rimraf": "^5.0.5",
     "cross-env": "^7.0.3"
