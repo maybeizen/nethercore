@@ -203,6 +203,9 @@ module.exports = {
                 .setCustomId(`participants-button-${giveawayData.id}`)
             ),
           ],
+          allowedMentions: {
+            users: [pingRole.id],
+          },
         });
 
         giveawayMongoData.messageId = giveawayMessage.id;

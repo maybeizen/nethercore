@@ -37,7 +37,9 @@ module.exports = async (client, message) => {
       context
     );
 
-    await message.reply(response.content);
+    await message.reply(response.content, {
+      allowedMentions: { users: [message.author.id] },
+    });
 
     addMessageToMemory(message.author, "user", message.content);
     addMessageToMemory(message.author, "bot", response.content);

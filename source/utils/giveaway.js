@@ -463,6 +463,9 @@ async function checkGiveaway(id, client) {
               .map((w) => `<@${w}>`)
               .join(", ")}`
           : "There were not enough participants to determine a winner(s).",
+        allowedMentions: {
+          users: giveaway.winners,
+        },
       });
     }
   } catch (error) {
