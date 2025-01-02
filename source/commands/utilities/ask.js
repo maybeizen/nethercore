@@ -13,6 +13,12 @@ module.exports = {
     .setDescription("Ask the AI a question.")
     .addStringOption((option) =>
       option
+        .setName("prompt")
+        .setDescription("The question or prompt for the AI.")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
         .setName("language")
         .setDescription("The language to use for the response.")
         .setRequired(true)
@@ -42,12 +48,6 @@ module.exports = {
           { name: "gpt-4o-mini-2024-07-18", value: "gpt-4o-mini-2024-07-18" },
           { name: "o1-mini", value: "o1-mini" }
         )
-    )
-    .addStringOption((option) =>
-      option
-        .setName("prompt")
-        .setDescription("The question or prompt for the AI.")
-        .setRequired(true)
     ),
   async execute(interaction) {
     try {

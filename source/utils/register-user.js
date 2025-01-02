@@ -63,4 +63,58 @@ async function registerUser(user, client) {
   }
 }
 
+async function registerUserWithLanguage(user, client, language) {
+  try {
+    let userData;
+    userData = await User.findOne({ "user.id": user.id });
+
+    if (userData) {
+      return userData;
+    } else {
+      const guild = client.guilds.cache.get(config.guildId);
+      const member = guild.members.cache.get(user.id);
+      const userCreatedAt = user.createdAt ? user.createdAt : null;
+      const userJoinedAt = member.joinedAt ? member.joinedAt : null;
+
+      userData = new User({
+        user: {
+          id: user.id,
+          username: user.username,
+          avatarLink: user.displayAvatarURL({ dynamic: true }) || null,
+        },
+        link: {
+          status: false,
+          email: null,
+        },
+        tickets: [],
+        language: {
+          default: "en-US",
+          value: language,
+        },
+        staff: {
+          isStaff: false,
+          ticketMessages: 0,
+          ticketsClosed: 0,
+        },
+        ticketBanned: false,
+        createdAt: userCreatedAt,
+        joinedAt: userJoinedAt,
+        leftAt: null,
+      });
+
+      await userData.save();
+
+      console.log(
+        color.green("[INFO] ") +
+          color.white(`Registered new member ${user.username}`)
+      );
+
+      return userData;
+    }
+  } catch (error) {
+    handleError(error);
+  }
+}
+
 module.exports = registerUser;
+module.exports = registerUserWithLanguage;
