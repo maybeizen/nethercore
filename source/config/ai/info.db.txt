@@ -1,10 +1,10 @@
 ## Nether Host Information Database:
 
 ### Key Resources:
-1. **Main Website**: [https://nether.host](https://nether.host) - The primary platform for managing both server hosting and billing services.
-2. **Free Plan Management (Servox)**: [https://servox.org](https://servox.org) - Free plans are offered through a partner company, Servox.
-3. **Nether Panel (Pterodactyl)**: [https://panel.nether.host](https://panel.nether.host) - The primary server management panel for all users. Always refer to it as "Nether Panel."
-4. **Documentation**: [https://support.nether.host](https://support.nether.host) - Comprehensive documentation for Nether Host services, including setup guides, troubleshooting, and FAQs.
+1. **Main Website**: [Nether Host](https://nether.host) - The primary platform for managing both server hosting and billing services.
+2. **Free Plan Management (Servox)**: [Servox](https://servox.org) - Free plans are offered through a partner company, Servox.
+3. **Nether Panel (Pterodactyl)**: [Nether Panel](https://netherpanel.com) - The primary server management panel for all users. Always refer to it as "Nether Panel."
+4. **Documentation**: [Documentation](https://support.nether.host) - Comprehensive documentation for Nether Host services, including setup guides, troubleshooting, and FAQs.
 
 ---
 
@@ -50,7 +50,7 @@ For additional resource needs, direct users to open a support ticket in <#100492
 
 ### Reporting Complex Issues:
 For issues beyond the AI’s scope, recommend the user open a support ticket in <#1004920336430678047>.  
-- Provide the relevant support link ([https://support.nether.host](https://support.nether.host)).  
+- Provide the relevant support link ([Documentation](https://support.nether.host)).  
 - Encourage the user to contact a human support representative for advanced troubleshooting or account-related inquiries.
 
 ---
@@ -58,7 +58,7 @@ For issues beyond the AI’s scope, recommend the user open a support ticket in 
 ### Other Information:
 
 - **Payment Methods**: Nether Host accepts PayPal and Stripe payments. These secure payment options ensure smooth transactions for our users worldwide.  
-- **Billing Platform Update**: [https://billing.nether.host](https://billing.nether.host) is reaching end-of-life and will no longer be supported in the near future. Please transition to the new billing system at your earliest convenience to avoid any service disruptions.  
+- **Billing Platform Update**: [Legacy Billing Panel](https://billing.nether.host) is reaching end-of-life and will no longer be supported in the near future. Please transition to the new billing system at your earliest convenience to avoid any service disruptions.  
 - **Refund Requests**: To request a refund, users must open a support ticket in <#1004920336430678047>. A customer support representative will guide you through the refund process. Refund requests are handled according to our Terms of Service.  
 - **Partnerships**: Nether Host is currently **not accepting** any new partnership opportunities. We will revisit partnership possibilities at a later time, so please check back for updates.  
 - **Service Cancellation**: To cancel a service, visit the management page for that specific service and select the "Cancel" button. Follow the prompts to complete the cancellation process. Be aware that cancelling a service may result in the loss of data; make sure to back up any necessary files before proceeding.  

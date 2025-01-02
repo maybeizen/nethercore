@@ -9,7 +9,7 @@ const config = JSON5.parse(
 );
 const User = require("../../models/User.js");
 const { loadMessages } = require("../../utils/language.js");
-const registerUser = require("../../utils/register-user.js");
+const { registerUser } = require("../../utils/register-user.js");
 const { isStaff } = require("../../utils/staff.js");
 
 module.exports = {

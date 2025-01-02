@@ -11,6 +11,7 @@ const User = require("../../models/User.js");
 const embed = require("../../config/embed.config.js");
 const handleError = require("../../utils/handle-error.js");
 const { loadMessages } = require("../../utils/language.js");
+const { registerUser } = require("../../utils/register-user");
 
 module.exports = {
   data: new SlashCommandBuilder()

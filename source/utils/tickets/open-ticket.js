@@ -20,7 +20,7 @@ const fs = require("fs");
 const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")
 );
-const registerUser = require("../register-user.js");
+const { registerUser } = require("../register-user.js");
 const {
   loadMessages,
   shortLanguageCodes,

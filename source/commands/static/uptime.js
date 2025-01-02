@@ -13,6 +13,7 @@ const fs = require("fs");
 const JSON5 = require("json5");
 const handleError = require("../../utils/handle-error.js");
 const { loadMessages } = require("../../utils/language.js");
+const { registerUser } = require("../../utils/register-user");
 
 const config = JSON5.parse(
   fs.readFileSync("source/config/general.json5", "utf-8")

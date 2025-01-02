@@ -63,7 +63,7 @@ async function registerUser(user, client) {
   }
 }
 
-async function registerUserWithLanguage(user, client, language) {
+async function registerUserAsSpanish(user, client) {
   try {
     let userData;
     userData = await User.findOne({ "user.id": user.id });
@@ -89,7 +89,7 @@ async function registerUserWithLanguage(user, client, language) {
         tickets: [],
         language: {
           default: "en-US",
-          value: language,
+          value: "es-ES",
         },
         staff: {
           isStaff: false,
@@ -116,5 +116,4 @@ async function registerUserWithLanguage(user, client, language) {
   }
 }
 
-module.exports = registerUser;
-module.exports = registerUserWithLanguage;
+module.exports = { registerUser, registerUserAsSpanish };
